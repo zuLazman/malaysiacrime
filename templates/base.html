@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>{% block title %}{% endblock %} | www.malaysiacrime.org</title>	
+	<link href="/static/stylesheets/base.css" rel="stylesheet" type="text/css" media="screen, projection"/>
+    <!--[if IE]><link href="/stylesheets/blueprint/ie.css" rel="stylesheet" type="text/css" media="screen, projection"/><![endif]-->
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=abcdefg&amp;sensor=false" type="text/javascript"></script>
+    <script src="http://gmaps-utility-library.googlecode.com/svn/trunk/markermanager/release/src/markermanager.js" type="text/javascript"></script>
+    {% block map_script %}{% endblock %}
+</head>
+<body onload="initialize()" onunload="GUnload()">
+<div class="container">
+{% block header %}
+    <div class="header span-21">
+        <h1><a href="/">Malaysia Crime</a></h1>
+    </div>
+    <div class="report span-3 last">
+        <a href="{% url crime-create %}">Report a Crime</a>
+    </div>
+{% endblock %}
+
+{% block content %}
+{% endblock %}
+
+{% block footer %}
+    <div class="footer span-24">
+        <p>Copyright <a href="http://kegan.info">Kegan Gan</a> //
+        <a href="http://creativecommons.org/licenses/by/3.0/us/" title="Creative Commons Attribution">Some Rights Reserved</a> //
+        <a href="http://www.djangoproject.com/">Django powered</a> //
+        Hosted at <a href="http://www.webfaction.com/?affiliate=kegan33">WebFaction</a></p>
+    </div>
+{% endblock %}
+</div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block map_script %}
+    <script type="text/javascript">
+        function initialize() {
+            if (GBrowserIsCompatible()) {
+                point = new GLatLng({{ crime.lat }}, {{ crime.lng}});
+                var map = new GMap2(document.getElementById("map_show"));
+                map.setCenter(point, 9);
+                map.setUIToDefault();
+                map.disableScrollWheelZoom();
+                map.addOverlay(new GMarker(point))
+            }
+        }
+    </script>
+{% endblock %}
+
+{% block title %}
+    {{ crime.headline }}
+{% endblock %}
+
+{% block content %}
+    <div class="headline span-24 last"><h1>{{ crime.headline }}</h1></div>
+    <div class="subline span-24 last">
+        {{ crime.date|timesince:now }} ago ///
+        <strong>{{ crime.location }}</strong> on {{ crime.date|date:"d M Y" }}
+    </div>
+    <div id="map_show" class="span-24 last"></div>
+    <div class="details span-24 last">{{ crime.details }}</div>
+    
+    <div class="update span-24 last">
+        <a href="{% url crime-update crime.id %}">Update this Crime Report</a>
+    </div>
+{% endblock %}

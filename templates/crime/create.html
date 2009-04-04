@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block map_script %}
+    <script type="text/javascript">
+        function initialize() {
+            if (GBrowserIsCompatible()) {
+                // ----- show a marker in the middle of map
+                function CrimeMarker() {}
+                CrimeMarker.prototype = new GOverlay();
+                CrimeMarker.prototype.initialize = function(map) {
+                    var div = document.createElement("div");
+                    div.style.position = "absolute";
+                    div.innerHTML = ""
+                        + "<img style='position:absolute;' src='http://maps.google.com/intl/en_ALL/mapfiles/marker.png'>"
+                        + "<img style='position:absolute;' src='http://maps.google.com/intl/en_ALL/mapfiles/shadow50.png'>";
+                    this._div = div;
+                    this._map = map;
+                    map.getPane(G_MAP_MAP_PANE).appendChild(this._div);
+                }
+                CrimeMarker.prototype.remove = function() { this.div_.parentNode.removeChild(this.div_); }
+                CrimeMarker.prototype.copu = function() { return new CrimeMarker(); }
+                CrimeMarker.prototype.redraw = function(force) {
+                    c = this._map.fromLatLngToDivPixel(this._map.getCenter())
+                    this._div.style.top = c.y - 34 + "px";
+                    this._div.style.left = c.x - 10 + "px";
+                }
+                
+                // ----- setup map 
+                var map = new GMap2(document.getElementById("map_create"));
+                map.setCenter(new GLatLng(3.0, 102.2), 9);
+                map.setUIToDefault();
+                map.disableScrollWheelZoom();
+                map.addOverlay(new CrimeMarker())
+                
+                document.getElementById("id_lat").value = map.getCenter().lat()
+                document.getElementById("id_lng").value = map.getCenter().lng()                
+                GEvent.addListener(map, "moveend", function() {
+                    document.getElementById("id_lat").value = map.getCenter().lat()
+                    document.getElementById("id_lng").value = map.getCenter().lng()
+                });
+            }
+        }
+    </script>
+{% endblock %}
+
+{% block title %}
+    Report a Crime
+{% endblock %}
+
+{% block content %}
+    <div class="title span-24 last"><h1>Report a Crime</h1></div>
+    <form action="." method="post">
+        <div class="label span-4">Headline :</div>
+        <div class="field span-20 last">
+            {% if form.headline.errors %}<span class="errors">{{ form.headline.errors|join:" // " }}</span><br />{% endif %}
+            {{ form.headline }}<br /><em>What is the headline of this crime?</em>
+        </div>
+
+        <div class="label span-4">Date :</div>
+        <div class="field span-20 last">
+            {% if form.date.errors %}<span class="errors">{{ form.date.errors|join:" // " }}</span><br />{% endif %}
+            {{ form.date }}<br /> <em>Date of the crime. Eg, <strong>21 Mar 2009</strong> or <strong>2009-03-21</strong>.</em>
+        </div>
+
+        <div class="label span-4">Location :</div>
+        <div class="field span-20 last">
+            {% if form.location.errors %}<span class="errors">{{ form.location.errors|join:" // " }}</span><br />{% endif %}
+            {{ form.location }}<br /><em>What is the location of this crime? <strong>Eg. Jalan 9/1 Bandar Puteri, Puchong, Selangor</strong>.</em>
+        </div>
+
+        <div class="label span-4">&nbsp;</div>
+        <div id="map_create" class="span-20 last"></div>
+
+        <div class="span-24 last">{{ form.lat }} {{ form.lng }}</div>
+
+        <div class="label span-4">Details :</div>
+        <div class="field span-20 last"><em>Please describe the crime in details.</em><br />{{ form.details }}</div>
+
+        <div class="label span-4">Password :</div>
+        <div class="field span-20 last">
+            {% if form.password.errors %}<span class="errors">{{ form.password.errors|join:" // " }}</span><br />{% endif %}            
+            {{ form.password }} <em>This is used only if you want to edit the post in the future.</em>
+        </div>
+        <div class="label span-4">Confirm Password :</div>
+        <div class="field span-20 last">
+            {% if form.password2.errors %}<span class="errors">{{ form.password2.errors|join:" // " }}</span><br />{% endif %}
+            {{ form.password2 }} <em>Input the password again for confirmation.</em>
+        </div>
+
+        <div class="label span-4">&nbsp;</div>
+        <div class="field span-20 last">
+            <input type="submit" value="Report It">&nbsp;&nbsp;&nbsp;&nbsp;<a href="{% url main-index %}">Cancel</a>
+        </div>
+    </form>
+{% endblock %}

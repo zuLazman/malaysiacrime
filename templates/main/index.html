@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block map_script %}
+    <script type="text/javascript">
+        function initialize() {
+            if (GBrowserIsCompatible()) {
+                var map = new GMap2(document.getElementById("map_index"));
+                map.setCenter(new GLatLng(4.0, 102.2), 7);
+                map.setUIToDefault();
+                map.disableScrollWheelZoom();
+                
+                function createMarker(text, lat, lng) {
+                    marker = new GMarker(new GLatLng(lat, lng)),
+                    marker.bindInfoWindow(text)
+                    return marker
+                }
+
+                var crimes = [
+                    {% for crime in crimes %}
+                        createMarker(
+                            "<span class='headlineinfo'><a href='{% url crime-show crime.id %}'>{{crime.headline}}</a></span><br/><span class='sublineinfo'>{{ crime.date|timesince:now }} ago /// <strong>{{ crime.location }}</strong> on {{ crime.date|date:"d M Y" }}</span>",
+                            {{crime.lat}}, {{crime.lng}}),
+                    {% endfor %}
+                ];
+                var mgr = new MarkerManager(map);
+                mgr.addMarkers(crimes, 0);
+                mgr.refresh();
+            }
+        }
+    </script>
+{% endblock %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+    <div class="stats span-21 last">
+        Showing <strong>{{ crimes.count }}</strong> of <strong>{{ crimes.count }}</strong> Crime Reports
+    </div>
+    <div id="map_index" class="span-24 last"></div>
+    
+    {% for crime in crimes %}
+        <div class="headlinelist span-24 last"><h2><a href="{% url crime-show crime.id %}">{{ crime.headline }}</a></h2></div>
+        <div class="sublinelist span-24 last">
+            {{ crime.date|timesince:now }} ago /// <strong>{{ crime.location }}</strong> on {{ crime.date|date:"d M Y" }}
+        </div>
+    {% endfor %}
+{% endblock %}

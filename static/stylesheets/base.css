@@ -1,0 +1,97 @@
+@import url('blueprint/screen.css');
+
+/* Header
+----------------------------------------------- */
+.header { background-color: #e5ecf9; border-bottom: 1px dotted #36c; }
+.header a {
+    color: #000;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 3px 20px;
+    text-decoration: none;
+}
+.header h1 {
+    color: #004990;
+    font-size: 16px;
+    margin: 5px 0px;
+}
+.report { text-align: right; padding: 3px 0px; }
+.report a {
+    color: #F00;
+    font-size: 13px;
+    font-weight: bold;
+    text-decoration: none;
+}
+.report a:hover { text-decoration: underline; }
+
+/* Show Crime
+----------------------------------------------- */
+#map_show { width: 720px; height:350px; margin-bottom: 15px; border: 1px solid #CCC; }
+.headline h1 {
+    color: #00F;
+    font-size: 30px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+.subline {
+    color: #;
+    font-size: 16px;
+    padding: 0px 0px;
+}
+.details {
+    font-size: 16px;
+    padding: 10px 0px;
+}
+.update {
+    padding-bottom: 20px;
+}
+
+/* Create Crime
+----------------------------------------------- */
+.title h1 { font-size:30px; margin-top:10px; margin-bottom:25px; }
+.label { text-align: right; font-weight: bold; color: #00F; }
+.field { margin-bottom: 15px; color: #666;}
+#map_create { width: 670px; height:350px; margin-bottom: 15px; border: 1px solid #CCC; }
+
+#id_headline { width: 500px; }
+#id_location { width: 500px; }
+#id_details { width: 670px; }
+
+.errors {
+    background-color: #F00;
+    color: #FF0;
+    font-weight: bold;
+    padding: 0px 10px;
+}
+
+/* Update Crime
+----------------------------------------------- */
+#map_update { width: 670px; height:350px; margin-bottom: 15px; border: 1px solid #CCC; }
+
+/* Main Index
+----------------------------------------------- */
+.stats {
+    color: #008080;
+    font-size: 14px;
+    text-align: right;
+    padding-top: 20px;
+}
+.headlineinfo { color: #00F; font-size: 18px; }
+.sublinelinfo { color: #008080; font-size: 8px; }
+.headlinelist h2 {
+    color: #00F;
+    font-size: 20px;
+    margin: 0px 0px;
+}
+.headlinelist a { text-decoration: none; }
+.headlinelist a:hover { color: #00F; text-decoration: underline; }
+.sublinelist { padding-bottom: 15px; }
+
+#map_index { width: 830px; height:500px; margin-top: 10px; margin-bottom: 30px; border: 1px solid #CCC; }
+
+/* Footer
+----------------------------------------------- */
+.footer { background-color: #e5ecf9; border-top: 1px dotted #36c; }
+.footer p { margin: 5px 20px; }
+.footer a { text-decoration: underline; }
+.footer a:hover { color: #ff8000; text-decoration: underline; }
