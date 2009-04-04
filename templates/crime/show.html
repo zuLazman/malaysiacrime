@@ -26,7 +26,7 @@
         <strong>{{ crime.location }}</strong> on {{ crime.date|date:"d M Y" }}
     </div>
     <div id="map_show" class="span-24 last"></div>
-    <div class="details span-24 last">{{ crime.details }}</div>
+    <div class="details span-24 last">{{ crime.details|linebreaksbr }}</div>
     
     <div class="update span-24 last">
         <a href="{% url crime-update crime.id %}">Update this Crime Report</a>
