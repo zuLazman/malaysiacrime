@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load comments %}
+
+{% block title %}Preview Your Comment{% endblock %}
+
+{% block content %}
+
+    <div class="title span-24 last"><h1>Previw Your comment</h1></div>
+
+    <div class="comment span-24 last">
+        {{ comment|linebreaksbr }}
+    </div>
+
+    <hr />
+    <form action="{% comment_form_target %}" method="post">
+        <div class="label span-4">Your Name:</div>
+        <div class="field span-20 last">
+            {% if form.name.errors %}<span class="errors">{{ form.name.errors|join:" // " }}</span><br />{% endif %}
+            {{ form.name }}&nbsp;&nbsp;&nbsp;<em>Required.</em>
+        </div>
+        <div class="label span-4">Your Email:</div>
+        <div class="field span-20 last">
+            {% if form.email.errors %}<span class="errors">{{ form.email.errors|join:" // " }}</span><br />{% endif %}
+            {{ form.email }}&nbsp;&nbsp;&nbsp;<em>Required. You can put fake email if you want.</em>
+        </div>
+        <div class="label span-4">Your Website:</div>
+        <div class="field span-20 last">
+            {% if form.url.errors %}<span class="errors">{{ form.url.errors|join:" // " }}</span><br />{% endif %}
+            {{ form.url }}&nbsp;&nbsp;&nbsp;<em>Optional.</em>
+        </div>
+        <div class="label span-4">Your Comment:</div>
+        <div class="field span-20 last">
+            {% if form.comment.errors %}<span class="errors">{{ form.comment.errors|join:" // " }}</span><br />{% endif %}
+            {{ form.comment }}
+        </div>
+
+        <div style="display:none;">
+            {{ form.honeypot }}
+            {{ form.content_type }}
+            {{ form.object_pk }}
+            {{ form.timestamp }}
+            {{ form.security_hash }}
+        </div>
+
+        <div class="label span-4">&nbsp;</div>
+        <div class="field span-20 last">
+            <input type="submit" name="post" value="Post" />&nbsp;&nbsp;&nbsp;
+            <input type="submit" name="preview" value="Preview" />
+        </div>
+    </form>
+{% endblock %}

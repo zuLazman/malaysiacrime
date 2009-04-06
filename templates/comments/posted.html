@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load comments %}
+
+{% block title %}Your Comment has been Posted{% endblock %}
+
+{% block content %}
+    <div class="title span-24 last"><h1>Your comment has been posted</h1></div>
+
+    <div class="comment span-24 last">
+        {{ comment.comment|linebreaksbr }}
+    </div>
+
+    <div class="span-24 last" style="margin: 20px 0px; font-size:16px;">
+        Back to <a href="{% url crime-show comment.object_pk %}">{{ comment.content_object.headline }}</a>
+    </div>
+
+{% endblock %}
