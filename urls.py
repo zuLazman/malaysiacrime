@@ -7,6 +7,7 @@ from django.conf.urls.defaults import *
 urlpatterns = patterns('',
     (r'^', include('main.urls')),
     (r'^crime/', include('crime.urls')),
+    (r'^comments/', include('django.contrib.comments.urls')),
 
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs'
     # to INSTALLED_APPS to enable admin documentation:
