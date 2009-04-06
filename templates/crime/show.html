@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load comments %}
 
 {% block map_script %}
     <script type="text/javascript">
@@ -20,13 +21,61 @@
 {% block content %}
     <div class="headline span-24 last"><h1>{{ crime.headline }}</h1></div>
     <div class="subline span-24 last">
-        {{ crime.date|timesince:now }} ago ///
-        <strong>{{ crime.location }}</strong> on {{ crime.date|date:"d M Y" }}
+        <span>{{ crime.date|timesince:now }}</span> ago at
+        <span>{{ crime.location }}</span> on {{ crime.date|date:"d M Y" }}
+        {% get_comment_count for crime as comment_count %}
+        {% if comment_count %}
+            // {{ comment_count }} comment{{ comment_count|pluralize }}
+        {% endif %}
     </div>
     <div id="map_show" class="span-24 last"></div>
     <div class="details span-24 last">{{ crime.details|linebreaksbr }}</div>
-    
+
     <div class="update span-24 last">
         <a href="{% url crime-update crime.id %}">Update this Crime Report</a>
     </div>
+
+    {% get_comment_list for crime as comments %}
+    {% for comment in comments %}
+        <hr />
+        <div class="comment span-24 last">
+            <em>written about <strong>{{ comment.submit_date|timesince:now }}</strong> ago by <strong>{{ comment.name }}</strong>:</em><br />
+            {{ comment.comment|linebreaksbr }}
+        </div>
+    {% endfor %}
+
+    <hr />
+    {% get_comment_form for crime as form %}
+    <form action="{% comment_form_target %}" method="post">
+        <div class="label span-4">Your Name:</div>
+        <div class="field span-20 last">
+            {{ form.name }}&nbsp;&nbsp;&nbsp;<em>Required.</em>
+        </div>
+        <div class="label span-4">Your Email:</div>
+        <div class="field span-20 last">
+            {{ form.email }}&nbsp;&nbsp;&nbsp;<em>Required. You can put fake email if you want.</em>
+        </div>
+        <div class="label span-4">Your Website:</div>
+        <div class="field span-20 last">
+            {{ form.url }}&nbsp;&nbsp;&nbsp;<em>Optional.</em>
+        </div>
+        <div class="label span-4">Your Comment:</div>
+        <div class="field span-20 last">
+            {{ form.comment }}
+        </div>
+
+        <div style="display:none;">
+            {{ form.honeypot }}
+            {{ form.content_type }}
+            {{ form.object_pk }}
+            {{ form.timestamp }}
+            {{ form.security_hash }}
+        </div>
+
+        <div class="label span-4">&nbsp;</div>
+        <div class="field span-20 last">
+            <input type="submit" name="post" value="Post" />&nbsp;&nbsp;&nbsp;
+            <input type="submit" name="preview" value="Preview" />
+        </div>
+    </form>
 {% endblock %}

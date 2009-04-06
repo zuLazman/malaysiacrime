@@ -77,12 +77,12 @@
         <div class="label span-4">Password :</div>
         <div class="field span-20 last">
             {% if form.password.errors %}<span class="errors">{{ form.password.errors|join:" // " }}</span><br />{% endif %}            
-            {{ form.password }} <em>This is used only if you want to edit the post in the future.</em>
+            {{ form.password }}&nbsp;&nbsp;&nbsp;<em>This is used only if you want to edit the post in the future.</em>
         </div>
         <div class="label span-4">Confirm Password :</div>
         <div class="field span-20 last">
             {% if form.password2.errors %}<span class="errors">{{ form.password2.errors|join:" // " }}</span><br />{% endif %}
-            {{ form.password2 }} <em>Input the password again for confirmation.</em>
+            {{ form.password2 }}&nbsp;&nbsp;&nbsp;<em>Type the password again for confirmation.</em>
         </div>
 
         <div class="label span-4">&nbsp;</div>

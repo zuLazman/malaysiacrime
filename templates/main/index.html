@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load comments %}
 
 {% block map_script %}
     <script type="text/javascript">
@@ -8,7 +9,7 @@
                 map.setCenter(new GLatLng(4.0, 102.2), 7);
                 map.setUIToDefault();
                 map.disableScrollWheelZoom();
-                
+
                 function createMarker(text, lat, lng) {
                     marker = new GMarker(new GLatLng(lat, lng)),
                     marker.bindInfoWindow(text)
@@ -17,8 +18,15 @@
 
                 var crimes = [
                     {% for crime in crimes %}
+                        {% get_comment_count for crime as comment_count %}
                         createMarker(
-                            "<span class='headlineinfo'><a href='{% url crime-show crime.id %}'>{{crime.headline}}</a></span><br/><span class='sublineinfo'>{{ crime.date|timesince:now }} ago /// <strong>{{ crime.location }}</strong> on {{ crime.date|date:"d M Y" }}</span>",
+                            "<span class='headlineinfo'>"
+                            + "<a href='{% url crime-show crime.id %}'>{{crime.headline}}</a></span><br/>"
+                            + "<span class='sublineinfo'>{{ crime.date|timesince:now }} ago at <strong>{{ crime.location }}</strong><br />"
+                            {% if comment_count %}
+                                + "// {{ comment_count }} comment{{ comment_count|pluralize }}"
+                            {% endif %}
+                            + "</span>",
                             {{crime.lat}}, {{crime.lng}}),
                     {% endfor %}
                 ];
@@ -37,11 +45,19 @@
         Showing <strong>{{ crimes.count }}</strong> of <strong>{{ crimes.count }}</strong> Crime Reports
     </div>
     <div id="map_index" class="span-24 last"></div>
-    
+
     {% for crime in crimes %}
+        {% get_comment_count for crime as comment_count %}
         <div class="headlinelist span-24 last"><h2><a href="{% url crime-show crime.id %}">{{ crime.headline }}</a></h2></div>
         <div class="sublinelist span-24 last">
-            {{ crime.date|timesince:now }} ago /// <strong>{{ crime.location }}</strong> on {{ crime.date|date:"d M Y" }}
+            <em>
+                <span>{{ crime.date|timesince:now }}</span> ago at
+                <span>{{ crime.location }}</span>
+                {# on {{ crime.date|date:"d M Y" }} #}
+                {% if comment_count %}
+                    // {{ comment_count }} comment{{ comment_count|pluralize }}
+                {% endif %}
+            </em>
         </div>
     {% endfor %}
 {% endblock %}

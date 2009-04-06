@@ -5,7 +5,7 @@
 .header { background-color: #e5ecf9; border-bottom: 1px dotted #36c; }
 .header a {
     color: #000;
-    font-size: 16px;
+    font-size: 36px;
     font-weight: bold;
     padding: 3px 20px;
     text-decoration: none;
@@ -18,7 +18,7 @@
 .report { text-align: right; padding: 3px 0px; }
 .report a {
     color: #F00;
-    font-size: 13px;
+    font-size: 15px;
     font-weight: bold;
     text-decoration: none;
 }
@@ -34,17 +34,15 @@
     margin-bottom: 15px;
 }
 .subline {
-    color: #;
+    color: #555;
     font-size: 16px;
     padding: 0px 0px;
 }
-.details {
-    font-size: 16px;
-    padding: 10px 0px;
-}
-.update {
-    padding-bottom: 20px;
-}
+.subline span { color: #555; font-weight: bold; }
+.details { font-size: 16px; padding: 10px 0px; }
+.update { padding-bottom: 20px; }
+#id_comment { width: 550px; }
+
 
 /* Create Crime
 ----------------------------------------------- */
@@ -86,8 +84,22 @@
 .headlinelist a { text-decoration: none; }
 .headlinelist a:hover { color: #00F; text-decoration: underline; }
 .sublinelist { padding-bottom: 15px; }
+.sublinelist em { color: #888; }
+.sublinelist em span { color: #888; font-weight: bold; }
+
 
 #map_index { width: 830px; height:500px; margin-top: 10px; margin-bottom: 30px; border: 1px solid #CCC; }
+
+/* Main Index
+----------------------------------------------- */
+.comment {
+    font-size: 16px;
+    padding-bottom: 15px;
+}
+.comment em {
+    color: #7F7F7F;
+    font-size: 12px;
+}
 
 /* Footer
 ----------------------------------------------- */
