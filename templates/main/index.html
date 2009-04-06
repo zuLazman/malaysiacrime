@@ -50,14 +50,12 @@
         {% get_comment_count for crime as comment_count %}
         <div class="headlinelist span-24 last"><h2><a href="{% url crime-show crime.id %}">{{ crime.headline }}</a></h2></div>
         <div class="sublinelist span-24 last">
-            <em>
-                <span>{{ crime.date|timesince:now }}</span> ago at
-                <span>{{ crime.location }}</span>
-                {# on {{ crime.date|date:"d M Y" }} #}
-                {% if comment_count %}
-                    // {{ comment_count }} comment{{ comment_count|pluralize }}
-                {% endif %}
-            </em>
+            <span>{{ crime.date|timesince:now }}</span> ago at
+            <span>{{ crime.location }}</span>
+            {# on {{ crime.date|date:"d M Y" }} #}
+            {% if comment_count %}
+                // {{ comment_count }} comment{{ comment_count|pluralize }}
+            {% endif %}
         </div>
     {% endfor %}
 {% endblock %}
