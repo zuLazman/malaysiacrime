@@ -39,7 +39,7 @@
     padding: 0px 0px;
 }
 .subline span { color: #555; font-weight: bold; }
-.details { font-size: 16px; padding: 10px 0px; }
+.details { font-family: georgia; font-size: 16px; padding: 10px 0px; }
 .update { padding-bottom: 20px; }
 #id_comment { width: 550px; }
 
@@ -93,6 +93,7 @@
 /* Main Index
 ----------------------------------------------- */
 .comment {
+    font-family: georgia;
     font-size: 16px;
     padding-bottom: 15px;
 }
