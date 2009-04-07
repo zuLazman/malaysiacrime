@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load comments %}
+{% load markup %}
 
 {% block map_script %}
     <script type="text/javascript">
@@ -29,7 +30,7 @@
         {% endif %}
     </div>
     <div id="map_show" class="span-24 last"></div>
-    <div class="details span-24 last">{{ crime.details|linebreaksbr }}</div>
+    <div class="details span-24 last">{{ crime.details|markdown:"safe" }}</div>
 
     <div class="update span-24 last">
         <a href="{% url crime-update crime.id %}">Update this Crime Report</a>
@@ -39,8 +40,8 @@
     {% for comment in comments %}
         <hr />
         <div class="comment span-24 last">
-            <em>written about <strong>{{ comment.submit_date|timesince:now }}</strong> ago by <strong>{{ comment.name }}</strong>:</em><br />
-            {{ comment.comment|linebreaksbr }}
+            <span>written about <strong>{{ comment.submit_date|timesince:now }}</strong> ago by <strong>{{ comment.name }}</strong>:</span><br />
+            {{ comment.comment|markdown:"safe" }}
         </div>
     {% endfor %}
 
@@ -61,7 +62,17 @@
         </div>
         <div class="label span-4">Your Comment:</div>
         <div class="field span-20 last">
-            {{ form.comment }}
+            {{ form.comment }}<br />
+            <em>
+                You can use the following to format your post:<br />
+                <span style="font-family:courier;">
+                &nbsp;&nbsp;_make the text italic_<br />
+                &nbsp;&nbsp;__make the text bold__<br />
+                &nbsp;&nbsp;![picture name](http://url_address_of_pic/pic.jpg/)<br />
+                &nbsp;&nbsp;[link name](http://url_address_of_link/link.html/)
+                </span>
+            </em>
+            
         </div>
 
         <div style="display:none;">

@@ -72,7 +72,18 @@
         <div class="span-24 last">{{ form.lat }} {{ form.lng }}</div>
 
         <div class="label span-4">Details :</div>
-        <div class="field span-20 last"><em>Please describe the crime in details.</em><br />{{ form.details }}</div>
+        <div class="field span-20 last">
+            <em>
+                Please describe the crime in details.<br />{{ form.details }}<br />
+                You can use the following to format your post:<br />
+                <span style="font-family:courier;">
+                &nbsp;&nbsp;_make the text italic_<br />
+                &nbsp;&nbsp;__make the text bold__<br />
+                &nbsp;&nbsp;![picture name](http://url_address_of_pic/pic.jpg/)<br />
+                &nbsp;&nbsp;[link name](http://url_address_of_link/link.html/)
+                </span>
+            </em>
+        </div>
 
         <div class="label span-4">Password :</div>
         <div class="field span-20 last">

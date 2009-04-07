@@ -96,9 +96,10 @@
     font-size: 16px;
     padding-bottom: 15px;
 }
-.comment em {
+.comment span {
     color: #408000;
     font-size: 12px;
+    font-style: italic;
 }
 
 /* Footer

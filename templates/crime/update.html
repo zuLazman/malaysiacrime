@@ -24,17 +24,17 @@
                     this._div.style.top = c.y - 34 + "px";
                     this._div.style.left = c.x - 10 + "px";
                 }
-                
-                // ----- setup map 
+
+                // ----- setup map
                 point = new GLatLng({{ crime.lat }}, {{ crime.lng }});
                 var map = new GMap2(document.getElementById("map_update"));
                 map.setCenter(point, 9);
                 map.setUIToDefault();
                 map.disableScrollWheelZoom();
                 map.addOverlay(new CrimeMarker())
-                
+
                 document.getElementById("id_lat").value = point.lat()
-                document.getElementById("id_lng").value = point.lng()                
+                document.getElementById("id_lng").value = point.lng()
                 GEvent.addListener(map, "moveend", function() {
                     document.getElementById("id_lat").value = map.getCenter().lat()
                     document.getElementById("id_lng").value = map.getCenter().lng()
@@ -73,11 +73,22 @@
         <div class="span-24 last">{{ form.lat }} {{ form.lng }}</div>
 
         <div class="label span-4">Details :</div>
-        <div class="field span-20 last"><em>Please describe the crime in details.</em><br />{{ form.details }}</div>
+        <div class="field span-20 last">
+            <em>
+                Please describe the crime in details.<br />{{ form.details }}<br />
+                You can use the following to format your post:<br />
+                <span style="font-family:courier;">
+                &nbsp;&nbsp;_make the text italic_<br />
+                &nbsp;&nbsp;__make the text bold__<br />
+                &nbsp;&nbsp;![picture name](http://url_address_of_pic/pic.jpg/)<br />
+                &nbsp;&nbsp;[link name](http://url_address_of_link/link.html/)
+                </span>
+            </em>
+        </div>
 
         <div class="label span-4">Password :</div>
         <div class="field span-20 last">
-            {% if form.password.errors %}<span class="errors">{{ form.password.errors|join:" // " }}</span><br />{% endif %}            
+            {% if form.password.errors %}<span class="errors">{{ form.password.errors|join:" // " }}</span><br />{% endif %}
             {{ form.password }} <em>You must know the &quot;password&quot; to update this report.</em>
         </div>
 

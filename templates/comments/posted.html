@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load comments %}
+{% load markup %}
 
 {% block title %}Your Comment has been Posted{% endblock %}
 
@@ -7,7 +8,7 @@
     <div class="title span-24 last"><h1>Your comment has been posted</h1></div>
 
     <div class="comment span-24 last">
-        {{ comment.comment|linebreaksbr }}
+        {{ comment.comment|markdown:"safe" }}
     </div>
 
     <div class="span-24 last" style="margin: 20px 0px; font-size:16px;">
