@@ -17,7 +17,7 @@
                 }
 
                 var crimes = [
-                    {% for crime in crimes %}
+                    {% for crime in crimes reversed %}
                         {% get_comment_count for crime as comment_count %}
                         createMarker(
                             "<span class='headlineinfo'>"
