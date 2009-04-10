@@ -23,7 +23,8 @@
     <div class="headline span-24 last"><h1>{{ crime.headline }}</h1></div>
     <div class="subline span-24 last">
         <span>{{ crime.date|timesince:now }}</span> ago at
-        <span>{{ crime.location }}</span> on {{ crime.date|date:"d M Y" }}
+        <span class="location">{{ crime.location }}</span> on {{ crime.date|date:"d M Y" }}
+        reported by <span>{{ crime.author }}</span>
         {% get_comment_count for crime as comment_count %}
         {% if comment_count %}
             // {{ comment_count }} comment{{ comment_count|pluralize }}
@@ -72,7 +73,7 @@
                 &nbsp;&nbsp;[link name](http://url_address_of_link/link.html/)
                 </span>
             </em>
-            
+
         </div>
 
         <div style="display:none;">

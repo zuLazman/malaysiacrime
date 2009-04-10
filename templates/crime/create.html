@@ -24,16 +24,16 @@
                     this._div.style.top = c.y - 34 + "px";
                     this._div.style.left = c.x - 10 + "px";
                 }
-                
-                // ----- setup map 
+
+                // ----- setup map
                 var map = new GMap2(document.getElementById("map_create"));
                 map.setCenter(new GLatLng(3.0, 102.2), 9);
                 map.setUIToDefault();
                 map.disableScrollWheelZoom();
                 map.addOverlay(new CrimeMarker())
-                
+
                 document.getElementById("id_lat").value = map.getCenter().lat()
-                document.getElementById("id_lng").value = map.getCenter().lng()                
+                document.getElementById("id_lng").value = map.getCenter().lng()
                 GEvent.addListener(map, "moveend", function() {
                     document.getElementById("id_lat").value = map.getCenter().lat()
                     document.getElementById("id_lng").value = map.getCenter().lng()
@@ -85,9 +85,15 @@
             </em>
         </div>
 
+        <div class="label span-4">Your Name :</div>
+        <div class="field span-20 last">
+            {% if form.author.errors %}<span class="errors">{{ form.author.errors|join:" // " }}</span><br />{% endif %}
+            {{ form.author }}&nbsp;&nbsp;&nbsp;<em>Required. Put fake name if you want.</em>
+        </div>
+
         <div class="label span-4">Password :</div>
         <div class="field span-20 last">
-            {% if form.password.errors %}<span class="errors">{{ form.password.errors|join:" // " }}</span><br />{% endif %}            
+            {% if form.password.errors %}<span class="errors">{{ form.password.errors|join:" // " }}</span><br />{% endif %}
             {{ form.password }}&nbsp;&nbsp;&nbsp;<em>This is used only if you want to edit the post in the future.</em>
         </div>
         <div class="label span-4">Confirm Password :</div>
