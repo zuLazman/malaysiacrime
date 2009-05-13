@@ -1,7 +1,4 @@
-from datetime import date
 from django.test import TestCase
-
-# from crime.models import Crime
 
 
 class ShowTestCase(TestCase):
@@ -14,7 +11,7 @@ class ShowTestCase(TestCase):
     def setUp(self):
         pass
 
-    def test_get_create(self):
+    def test_get_show(self):
         """
         Test accessing show page.
         """
