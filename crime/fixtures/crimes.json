@@ -7,7 +7,7 @@
         "lat": 3.1,
         "lng": 101.1,
         "details": "Stealing of power by force.",
-        "password": "123",
+        "password": "123456",
         "created_at": "2009-04-04 00:00:00",
         "updated_at": "2009-04-04 00:00:00"}}
 ]
