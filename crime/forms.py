@@ -10,6 +10,7 @@ class CrimeCreateForm(forms.ModelForm):
     """
     lat       = forms.FloatField(widget=forms.HiddenInput())
     lng       = forms.FloatField(widget=forms.HiddenInput())
+    zoom      = forms.IntegerField(widget=forms.HiddenInput())
     password  = forms.CharField(max_length=20, widget=forms.PasswordInput())
     password2 = forms.CharField(max_length=20, widget=forms.PasswordInput())
 
@@ -30,8 +31,9 @@ class CrimeUpdateForm(forms.ModelForm):
     """
     lat      = forms.FloatField(widget=forms.HiddenInput())
     lng      = forms.FloatField(widget=forms.HiddenInput())
+    zoom     = forms.IntegerField(widget=forms.HiddenInput())
     password = forms.CharField(max_length=20, widget=forms.PasswordInput())
-    
+
     def clean_password(self):
         password = self.cleaned_data.get('password')
         if password != self.instance.password:
