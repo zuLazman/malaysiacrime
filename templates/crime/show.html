@@ -8,7 +8,7 @@
             if (GBrowserIsCompatible()) {
                 point = new GLatLng({{ crime.lat }}, {{ crime.lng}});
                 var map = new GMap2(document.getElementById("map_show"));
-                map.setCenter(point, 9);
+                map.setCenter(point, {{ crime.zoom }});
                 map.setUIToDefault();
                 map.disableScrollWheelZoom();
                 map.addOverlay(new GMarker(point))

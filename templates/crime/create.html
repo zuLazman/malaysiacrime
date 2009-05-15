@@ -20,7 +20,7 @@
                 CrimeMarker.prototype.remove = function() { this.div_.parentNode.removeChild(this.div_); }
                 CrimeMarker.prototype.copu = function() { return new CrimeMarker(); }
                 CrimeMarker.prototype.redraw = function(force) {
-                    c = this._map.fromLatLngToDivPixel(this._map.getCenter())
+                    c = this._map.fromLatLngToDivPixel(this._map.getCenter());
                     this._div.style.top = c.y - 34 + "px";
                     this._div.style.left = c.x - 10 + "px";
                 }
@@ -30,13 +30,17 @@
                 map.setCenter(new GLatLng(3.0, 102.2), 9);
                 map.setUIToDefault();
                 map.disableScrollWheelZoom();
-                map.addOverlay(new CrimeMarker())
+                map.addOverlay(new CrimeMarker());
 
-                document.getElementById("id_lat").value = map.getCenter().lat()
-                document.getElementById("id_lng").value = map.getCenter().lng()
+                document.getElementById("id_lat").value = map.getCenter().lat();
+                document.getElementById("id_lng").value = map.getCenter().lng();
                 GEvent.addListener(map, "moveend", function() {
-                    document.getElementById("id_lat").value = map.getCenter().lat()
-                    document.getElementById("id_lng").value = map.getCenter().lng()
+                    document.getElementById("id_lat").value = map.getCenter().lat();
+                    document.getElementById("id_lng").value = map.getCenter().lng();
+                });
+                document.getElementById("id_zoom").value = map.getZoom();
+                GEvent.addListener(map, "zoomend", function() {
+                    document.getElementById("id_zoom").value = map.getZoom();
                 });
             }
         }
@@ -69,7 +73,7 @@
         <div class="label span-4">&nbsp;</div>
         <div id="map_create" class="span-20 last"></div>
 
-        <div class="span-24 last">{{ form.lat }} {{ form.lng }}</div>
+        <div class="span-24 last">{{ form.lat }} {{ form.lng }} {{ form.zoom }}</div>
 
         <div class="label span-4">Details :</div>
         <div class="field span-20 last">

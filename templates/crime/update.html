@@ -28,7 +28,7 @@
                 // ----- setup map
                 point = new GLatLng({{ crime.lat }}, {{ crime.lng }});
                 var map = new GMap2(document.getElementById("map_update"));
-                map.setCenter(point, 9);
+                map.setCenter(point, {{ crime.zoom }});
                 map.setUIToDefault();
                 map.disableScrollWheelZoom();
                 map.addOverlay(new CrimeMarker())
@@ -38,6 +38,10 @@
                 GEvent.addListener(map, "moveend", function() {
                     document.getElementById("id_lat").value = map.getCenter().lat()
                     document.getElementById("id_lng").value = map.getCenter().lng()
+                });
+                document.getElementById("id_zoom").value = map.getZoom();
+                GEvent.addListener(map, "zoomend", function() {
+                    document.getElementById("id_zoom").value = map.getZoom();
                 });
             }
         }
@@ -70,7 +74,7 @@
         <div class="label span-4">&nbsp;</div>
         <div id="map_update" class="span-20 last"></div>
 
-        <div class="span-24 last">{{ form.lat }} {{ form.lng }}</div>
+        <div class="span-24 last">{{ form.lat }} {{ form.lng }} {{ form.zoom }}</div>
 
         <div class="label span-4">Details :</div>
         <div class="field span-20 last">
@@ -85,12 +89,12 @@
                 </span>
             </em>
         </div>
-        
+
         <div class="label span-4">Your Name :</div>
         <div class="field span-20 last">
             {% if form.author.errors %}<span class="errors">{{ form.author.errors|join:" // " }}</span><br />{% endif %}
             {{ form.author }}&nbsp;&nbsp;&nbsp;<em>Required. Put fake name if you want.</em>
-        </div>        
+        </div>
 
         <div class="label span-4">Password :</div>
         <div class="field span-20 last">
