@@ -11,6 +11,7 @@ class Crime(models.Model):
     location   = models.CharField(max_length=300)
     lat        = models.FloatField()
     lng        = models.FloatField()
+    zoom       = models.IntegerField()
     details    = models.TextField()
     author     = models.CharField(max_length=50)
     password   = models.CharField(max_length=20)
