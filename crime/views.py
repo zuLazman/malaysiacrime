@@ -24,17 +24,17 @@ def show(request, id, template_name='crime/show.html'):
     })
     return render_to_response(template_name, context)
 
-def create(request, template_name='crime/create.html'):
+def create(request, form_class=CrimeCreateForm, template_name='crime/create.html'):
     """
     Report a crime.
     """
     if request.method == 'POST':
-        form = CrimeCreateForm(request.POST)
+        form = form_class(request.POST)
         if form.is_valid():
             crime = form.save()
             return HttpResponseRedirect(reverse('crime-show', args=[crime.id]))
     elif request.method == 'GET':
-        form = CrimeCreateForm()
+        form = form_class()
     else:
         return HttpResponseRedirect(request.path)
 
@@ -42,27 +42,27 @@ def create(request, template_name='crime/create.html'):
         'form': form,
     })
     return render_to_response(template_name, context)
-    
-def update(request, id, template_name='crime/update.html'):
+
+def update(request, id, form_class=CrimeUpdateForm, template_name='crime/update.html'):
     """
     Update an existing crime report.
     """
     crime = get_object_or_404(Crime, pk=id)
-    
+
     if request.method == 'POST':
-        form = CrimeUpdateForm(request.POST, instance=crime)
+        form = form_class(request.POST, instance=crime)
         if form.is_valid():
             crime = form.save()
             return HttpResponseRedirect(reverse('crime-show', args=[crime.id]))
     elif request.method == 'GET':
         crime.password = ""
-        form = CrimeUpdateForm(instance=crime)
+        form = form_class(instance=crime)
     else:
         return HttpResponseRedirect(request.path)
 
     context = RequestContext(request, {
         'crime': crime,
-        'form': form,        
+        'form': form,
     })
     return render_to_response(template_name, context)
 
