@@ -5,5 +5,5 @@ from views import *
 
 urlpatterns = patterns('',
     url(r'^$', index, name='main-index'),
-    url(r'^most/updated/$', most_updated, name='main-most-updated'),
+    url(r'^recent/updated/$', recent_updated, name='main-recent-updated'),
 )

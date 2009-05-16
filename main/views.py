@@ -23,7 +23,7 @@ def index(request, template_name='main/index.html'):
     })
     return render_to_response(template_name, context)
 
-def most_updated(request, template_name='main/most_updated.html'):
+def recent_updated(request, template_name='main/recent_updated.html'):
     """
     Return crime reports sort by most updated.
     """

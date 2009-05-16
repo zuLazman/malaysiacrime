@@ -22,12 +22,12 @@ class MainTestCase(TestCase):
         self.assertEquals(response.context['crimes'][1].id, 2)
         self.assertEquals(response.context['crimes'][2].id, 3)
 
-    def test_get_most_updated(self):
+    def test_get_recent_updated(self):
         """
         Test accessing most updated page.
         """
-        response = self.client.get('/most/updated/')
-        self.assertTemplateUsed(response, 'main/most_updated.html')
+        response = self.client.get('/recent/updated/')
+        self.assertTemplateUsed(response, 'main/recent_updated.html')
 
         self.assertEquals(len(response.context['crimes']), 3)
         self.assertEquals(response.context['crimes'][0].id, 3)
