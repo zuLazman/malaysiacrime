@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.test import TestCase
 
 
@@ -44,6 +45,20 @@ class MainTestCase(TestCase):
         self.assertEquals(len(response.context['crimes']), 2)
         self.assertEquals(response.context['crimes'][0].id, 2)
         self.assertEquals(response.context['crimes'][1].id, 1)
+
+    def test_get_sitemap(self):
+        """
+        Test accessing sitemap.xml.
+        """
+        response = self.client.get('/sitemap.xml')
+
+        self.assertEquals(response.context['urlset'][0]['location'], "http://example.com/crime/show/1/")
+        self.assertEquals(response.context['urlset'][1]['location'], "http://example.com/crime/show/2/")
+        self.assertEquals(response.context['urlset'][2]['location'], "http://example.com/crime/show/3/")
+
+        self.assertEquals(response.context['urlset'][0]['lastmod'], datetime(2009,4,1))
+        self.assertEquals(response.context['urlset'][1]['lastmod'], datetime(2009,4,30))
+        self.assertEquals(response.context['urlset'][2]['lastmod'], datetime(2009,5,1))
 
     def tearDown(self):
         pass
