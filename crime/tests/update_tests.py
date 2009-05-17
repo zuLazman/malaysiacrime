@@ -9,7 +9,7 @@ class UpdateTestCase(TestCase):
     Test updating a crime report.
     """
     urls = 'crime.urls'
-    fixtures = ['crimes']
+    fixtures = ['crime/fixtures/crimes']
 
     def setUp(self):
         pass

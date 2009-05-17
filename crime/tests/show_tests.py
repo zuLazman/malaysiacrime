@@ -6,7 +6,7 @@ class ShowTestCase(TestCase):
     Test reading a crime report.
     """
     urls = 'crime.urls'
-    fixtures = ['crimes']
+    fixtures = ['crime/fixtures/crimes']
 
     def setUp(self):
         pass
@@ -17,7 +17,7 @@ class ShowTestCase(TestCase):
         """
         response = self.client.get('/show/1/')
         self.assertTemplateUsed(response, 'crime/show.html')
-        
+
         self.assertEquals(response.context['crime'].id, 1)
         self.assertEquals(response.context['crime'].headline, "Terrible Crime")
 
