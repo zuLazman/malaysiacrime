@@ -5,7 +5,7 @@ class MainTestCase(TestCase):
     """
     Test accessing and browsing crime reports.
     """
-    fixtures = ['crimes', 'comments']
+    fixtures = ['main/fixtures/crimes', 'main/fixtures/comments']
 
     def setUp(self):
         pass
