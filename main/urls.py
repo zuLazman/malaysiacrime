@@ -14,5 +14,6 @@ urlpatterns = patterns('',
     url(r'^recent/updated/$', recent_updated, name='main-recent-updated'),
     url(r'^recent/commented/$', recent_commented, name='main-recent-commented'),
 
+    url(r'^robots.txt$', 'django.views.generic.simple.direct_to_template', {'template': 'main/robots.txt', 'mimetype': 'text/plain'}),
     url(r'^sitemap.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
 )
