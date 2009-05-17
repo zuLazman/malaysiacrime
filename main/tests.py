@@ -34,5 +34,16 @@ class MainTestCase(TestCase):
         self.assertEquals(response.context['crimes'][1].id, 2)
         self.assertEquals(response.context['crimes'][2].id, 1)
 
+    def test_get_recent_commented(self):
+        """
+        Test accessing most commented page.
+        """
+        response = self.client.get('/recent/commented/')
+        self.assertTemplateUsed(response, 'main/recent_commented.html')
+
+        self.assertEquals(len(response.context['crimes']), 2)
+        self.assertEquals(response.context['crimes'][0].id, 2)
+        self.assertEquals(response.context['crimes'][1].id, 1)
+
     def tearDown(self):
         pass
