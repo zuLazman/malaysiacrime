@@ -92,6 +92,7 @@ INSTALLED_APPS = (
     'django.contrib.humanize',
     'django.contrib.comments',
     'django.contrib.markup',
+    'django.contrib.sitemaps',
     'crime',
     'main',
 )
