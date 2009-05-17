@@ -6,4 +6,5 @@ from views import *
 urlpatterns = patterns('',
     url(r'^$', index, name='main-index'),
     url(r'^recent/updated/$', recent_updated, name='main-recent-updated'),
+    url(r'^recent/commented/$', recent_commented, name='main-recent-commented'),
 )

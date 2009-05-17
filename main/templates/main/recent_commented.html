@@ -1,0 +1,16 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<body>
+    {% for crime in crimes %}
+        {{ crime.headline }}
+        {{ crime.date|timesince:now }}
+        {{ crime.location }}
+        {{ crime.lat }}
+        {{ crime.lng }}
+        {{ crime.zoom }}
+        {{ crime.details }}
+        {{ crime.author }}
+    {% endfor %}
+
+</body>
+</html>
