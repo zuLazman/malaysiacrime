@@ -1,0 +1,4 @@
+User-Agent: *
+Disallow: /crime/create/
+Disallow: /crime/update/
+Allow: /
