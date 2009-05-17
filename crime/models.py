@@ -20,3 +20,7 @@ class Crime(models.Model):
 
     def __unicode__(self):
         return self.headline
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('crime-show', (), {'id': self.id})
