@@ -28,6 +28,7 @@ class CreateTestCase(TestCase):
             'headline': "Terrible Crime",
             'date': date(2009,12,31),
             'location': "Ipoh, Perak",
+            'icon': "G_DEFAULT_ICON",
             'lat': 80,
             'lng': 60,
             'zoom': 18,
@@ -38,17 +39,18 @@ class CreateTestCase(TestCase):
         }
         response = self.client.post('/create/', inputs)
         self.assertRedirects(response, '/show/1/')
-        
+
         crime = Crime.objects.latest('created_at')
         self.assertEquals(crime.headline, inputs['headline'])
         self.assertEquals(crime.date, inputs['date'])
         self.assertEquals(crime.location, inputs['location'])
+        self.assertEquals(crime.icon, inputs['icon'])
         self.assertAlmostEquals(crime.lat, inputs['lat'])
         self.assertAlmostEquals(crime.lng, inputs['lng'])
         self.assertEquals(crime.details, inputs['details'])
         self.assertEquals(crime.author, inputs['author'])
         self.assertEquals(crime.password, inputs['password'])
-        
+
     def test_post_create_password_not_match(self):
         """
         Test posting to create with password does not match.
@@ -57,6 +59,7 @@ class CreateTestCase(TestCase):
             'headline': "Terrible Crime",
             'date': date(2009,12,31),
             'location': "Ipoh, Perak",
+            'icon': "G_DEFAULT_ICON",
             'lat': 80,
             'lng': 60,
             'zoom': 18,
@@ -68,6 +71,27 @@ class CreateTestCase(TestCase):
         response = self.client.post('/create/', inputs)
         self.assertTemplateUsed(response, 'crime/create.html')
         self.assertFormError(response, 'form', 'password2', "The passwords do not match.")
+
+    def test_post_create_icon_invalid(self):
+        """
+        Test creating with invalid icon string.
+        """
+        inputs = {
+            'headline': "Terrible Crime",
+            'date': date(2009,12,31),
+            'location': "Ipoh, Perak",
+            'icon': "XXX",
+            'lat': 80,
+            'lng': 60,
+            'zoom': 18,
+            'details': "Stealing of power.",
+            'author': "Nizar",
+            'password': "123456",
+            'password2': "abcdef",
+        }
+        response = self.client.post('/create/', inputs)
+        self.assertTemplateUsed(response, 'crime/create.html')
+        self.assertFormError(response, 'form', 'icon', "Invalid icon.")
 
     def tearDown(self):
         pass

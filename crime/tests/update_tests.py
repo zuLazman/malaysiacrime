@@ -32,6 +32,7 @@ class UpdateTestCase(TestCase):
             'headline': "Terrible Crime Updated",
             'date': date(2009,12,31),
             'location': "Ipoh, Perak",
+            'icon': "G_DEFAULT_ICON",
             'lat': 80,
             'lng': 60,
             'zoom': 18,
@@ -53,6 +54,7 @@ class UpdateTestCase(TestCase):
             'headline': "Terrible Crime Updated",
             'date': date(2009,12,31),
             'location': "Ipoh, Perak",
+            'icon': "G_DEFAULT_ICON",
             'lat': 80,
             'lng': 60,
             'zoom': 18,
@@ -63,6 +65,26 @@ class UpdateTestCase(TestCase):
         response = self.client.post('/update/1/', inputs)
         self.assertTemplateUsed(response, 'crime/update.html')
         self.assertFormError(response, 'form', 'password', "The password is incorrect.")
+
+    def test_post_update_icon_invalid(self):
+        """
+        Test post update with invalid icon.
+        """
+        inputs = {
+            'headline': "Terrible Crime Updated",
+            'date': date(2009,12,31),
+            'location': "Ipoh, Perak",
+            'icon': "XXX",
+            'lat': 80,
+            'lng': 60,
+            'zoom': 18,
+            'details': "Stealing of power.",
+            'author': "Nizar",
+            'password': "aaaaaa",
+        }
+        response = self.client.post('/update/1/', inputs)
+        self.assertTemplateUsed(response, 'crime/update.html')
+        self.assertFormError(response, 'form', 'icon', "Invalid icon.")
 
     def tearDown(self):
         pass
