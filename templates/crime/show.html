@@ -3,15 +3,18 @@
 {% load markup %}
 
 {% block map_script %}
+    <script src="{% url main-icons-js %}" type="text/javascript"></script>
     <script type="text/javascript">
+        var map = null;
+
         function initialize() {
             if (GBrowserIsCompatible()) {
                 point = new GLatLng({{ crime.lat }}, {{ crime.lng}});
-                var map = new GMap2(document.getElementById("map_show"));
+                map = new GMap2(document.getElementById("map_show"));
                 map.setCenter(point, {{ crime.zoom }});
                 map.setUIToDefault();
                 map.disableScrollWheelZoom();
-                map.addOverlay(new GMarker(point))
+                map.addOverlay(new GMarker(point, {{ crime.icon }}))
             }
         }
     </script>

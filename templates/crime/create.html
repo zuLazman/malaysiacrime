@@ -3,47 +3,61 @@
 {% block map_script %}
     <script src="{% url main-icons-js %}" type="text/javascript"></script>
     <script type="text/javascript">
+        var map = null;
+
+        // ----- define the GOverlay that show marker in the middle of map
+        function CrimeMarker(icon) { this.icon_ = icon; }
+        CrimeMarker.prototype = new GOverlay();
+        CrimeMarker.prototype.initialize = function(map) {
+            var div = document.createElement("div");
+            div.style.position = "absolute";
+            div.innerHTML = ""
+                + "<img style='position:absolute;' src='" + this.icon_.image + "'>"
+                + "<img style='position:absolute;' src='" + this.icon_.shadow + "'>";
+            this.div_ = div;
+            this.map_ = map;
+            map.getPane(G_MAP_MAP_PANE).appendChild(this.div_);
+        }
+        CrimeMarker.prototype.remove = function() { this.div_.parentNode.removeChild(this.div_); }
+        CrimeMarker.prototype.copy = function() { return new CrimeMarker(this.icon_); }
+        CrimeMarker.prototype.redraw = function(force) {
+            c = this.map_.fromLatLngToDivPixel(this.map_.getCenter());
+            this.div_.style.top = c.y - this.icon_.iconAnchor.y + "px";
+            this.div_.style.left = c.x - this.icon_.iconAnchor.x + "px";
+        }
+
+        // ----- setup map
         function initialize() {
             if (GBrowserIsCompatible()) {
-                // ----- show a marker in the middle of map
-                function CrimeMarker() {}
-                CrimeMarker.prototype = new GOverlay();
-                CrimeMarker.prototype.initialize = function(map) {
-                    var div = document.createElement("div");
-                    div.style.position = "absolute";
-                    div.innerHTML = ""
-                        + "<img style='position:absolute;' src='" + REMPIT_ICON.image + "'>"
-                        + "<img style='position:absolute;' src='" + REMPIT_ICON.shadow + "'>";
-                    this._div = div;
-                    this._map = map;
-                    map.getPane(G_MAP_MAP_PANE).appendChild(this._div);
-                }
-                CrimeMarker.prototype.remove = function() { this.div_.parentNode.removeChild(this.div_); }
-                CrimeMarker.prototype.copu = function() { return new CrimeMarker(); }
-                CrimeMarker.prototype.redraw = function(force) {
-                    c = this._map.fromLatLngToDivPixel(this._map.getCenter());
-                    this._div.style.top = c.y - 34 + "px";
-                    this._div.style.left = c.x - 10 + "px";
-                }
-
                 // ----- setup map
-                var map = new GMap2(document.getElementById("map_create"));
+                map = new GMap2(document.getElementById("map_create"));
                 map.setCenter(new GLatLng(3.0, 102.2), 9);
                 map.setUIToDefault();
                 map.disableScrollWheelZoom();
-                map.addOverlay(new CrimeMarker());
+                map.addOverlay(new CrimeMarker(G_DEFAULT_ICON));
+                setupHandler();
+            }
+        }
 
+        // ----- setup event handler
+        function setupHandler() {
+            // handle icon
+            document.getElementById('id_icon_rempit').onclick = function() {
+                map.clearOverlays();
+                map.addOverlay(new CrimeMarker(REMPIT_ICON));                
+            }
+            
+            // handle lat and lng
+            document.getElementById("id_lat").value = map.getCenter().lat();
+            document.getElementById("id_lng").value = map.getCenter().lng();
+            GEvent.addListener(map, "moveend", function() {
                 document.getElementById("id_lat").value = map.getCenter().lat();
                 document.getElementById("id_lng").value = map.getCenter().lng();
-                GEvent.addListener(map, "moveend", function() {
-                    document.getElementById("id_lat").value = map.getCenter().lat();
-                    document.getElementById("id_lng").value = map.getCenter().lng();
-                });
+            });
+            document.getElementById("id_zoom").value = map.getZoom();
+            GEvent.addListener(map, "zoomend", function() {
                 document.getElementById("id_zoom").value = map.getZoom();
-                GEvent.addListener(map, "zoomend", function() {
-                    document.getElementById("id_zoom").value = map.getZoom();
-                });
-            }
+            });
         }
     </script>
 {% endblock %}
@@ -73,6 +87,8 @@
 
         <div class="label span-4">&nbsp;</div>
         <div id="map_create" class="span-20 last"></div>
+        
+        <div id="id_icon_rempit" class="span-1 last"><img src="{{ MEDIA_URL }}images/markers/rempit.png"></div>
 
         <div class="span-24 last">{{ form.lat }} {{ form.lng }} {{ form.zoom }}</div>
 
