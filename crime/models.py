@@ -9,6 +9,7 @@ class Crime(models.Model):
     headline   = models.CharField(max_length=100)
     date       = models.DateField()
     location   = models.CharField(max_length=300)
+    icon       = models.CharField(max_length=50)
     lat        = models.FloatField()
     lng        = models.FloatField()
     zoom       = models.IntegerField()

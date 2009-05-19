@@ -4,15 +4,24 @@ from django.utils.translation import ugettext as _
 from models import Crime
 
 
+ICONS = ('REMPIT_ICON', 'G_DEFAULT_ICON')
+
 class CrimeCreateForm(forms.ModelForm):
     """
     Form for entering crime information.
     """
     lat       = forms.FloatField(widget=forms.HiddenInput())
     lng       = forms.FloatField(widget=forms.HiddenInput())
+    icon      = forms.CharField(widget=forms.HiddenInput())
     zoom      = forms.IntegerField(widget=forms.HiddenInput())
     password  = forms.CharField(max_length=20, widget=forms.PasswordInput())
     password2 = forms.CharField(max_length=20, widget=forms.PasswordInput())
+
+    def clean_icon(self):
+        icon = self.cleaned_data.get("icon")
+        if icon not in ICONS:
+            raise forms.ValidationError(_("Invalid icon."))
+        return icon
 
     def clean_password2(self):
         password = self.cleaned_data.get("password")
@@ -31,8 +40,15 @@ class CrimeUpdateForm(forms.ModelForm):
     """
     lat      = forms.FloatField(widget=forms.HiddenInput())
     lng      = forms.FloatField(widget=forms.HiddenInput())
+    icon     = forms.CharField(widget=forms.HiddenInput())
     zoom     = forms.IntegerField(widget=forms.HiddenInput())
     password = forms.CharField(max_length=20, widget=forms.PasswordInput())
+
+    def clean_icon(self):
+        icon = self.cleaned_data.get("icon")
+        if icon not in ICONS:
+            raise forms.ValidationError(_("Invalid icon."))
+        return icon
 
     def clean_password(self):
         password = self.cleaned_data.get('password')
