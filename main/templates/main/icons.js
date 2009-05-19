@@ -1,12 +1,12 @@
 
 // ----- rempit icon
 var REMPIT_ICON              = new GIcon();
-REMPIT_ICON.image            = '../static/images/markers/rempit.png';
-REMPIT_ICON.shadow           = '../static/images/markers/rempit_shadow.png';
-REMPIT_ICON.mozPrintImage    = '../static/images/markers/rempit_mozPrint.gif';
-REMPIT_ICON.printImage       = '../static/images/markers/rempit_print.gif';
-REMPIT_ICON.printShadow      = '../static/images/markers/rempit_printShadow.gif';
-REMPIT_ICON.transparent      = '../static/images/markers/rempit_transparent.png';
+REMPIT_ICON.image            = '{{ MEDIA_URL }}images/markers/rempit.png';
+REMPIT_ICON.shadow           = '{{ MEDIA_URL }}images/markers/rempit_shadow.png';
+REMPIT_ICON.mozPrintImage    = '{{ MEDIA_URL }}images/markers/rempit_mozPrint.gif';
+REMPIT_ICON.printImage       = '{{ MEDIA_URL }}images/markers/rempit_print.gif';
+REMPIT_ICON.printShadow      = '{{ MEDIA_URL }}images/markers/rempit_printShadow.gif';
+REMPIT_ICON.transparent      = '{{ MEDIA_URL }}images/markers/rempit_transparent.png';
 REMPIT_ICON.iconSize         = new GSize(39,39);
 REMPIT_ICON.shadowSize       = new GSize(59,39);
 REMPIT_ICON.iconAnchor       = new GPoint(20,39);

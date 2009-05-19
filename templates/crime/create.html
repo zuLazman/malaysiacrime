@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block map_script %}
+    <script src="{% url main-icons-js %}" type="text/javascript"></script>
     <script type="text/javascript">
         function initialize() {
             if (GBrowserIsCompatible()) {
@@ -11,8 +12,8 @@
                     var div = document.createElement("div");
                     div.style.position = "absolute";
                     div.innerHTML = ""
-                        + "<img style='position:absolute;' src='http://maps.google.com/intl/en_ALL/mapfiles/marker.png'>"
-                        + "<img style='position:absolute;' src='http://maps.google.com/intl/en_ALL/mapfiles/shadow50.png'>";
+                        + "<img style='position:absolute;' src='" + REMPIT_ICON.image + "'>"
+                        + "<img style='position:absolute;' src='" + REMPIT_ICON.shadow + "'>";
                     this._div = div;
                     this._map = map;
                     map.getPane(G_MAP_MAP_PANE).appendChild(this._div);
