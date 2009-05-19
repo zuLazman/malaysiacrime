@@ -105,7 +105,7 @@ body {
 ----------------------------------------------- */
 #map_show { width: 720px; height:350px; margin-bottom: 15px; border: 1px solid #CCC; }
 .headline h1 {
-    color: #00F;
+    color: #BF0000;
     font-size: 30px;
     margin-top: 20px;
     margin-bottom: 15px;
@@ -147,13 +147,19 @@ body {
 /* Main Index
 ----------------------------------------------- */
 .stats {
-    color: #008080;
+    color: #333;
+    font-size: 14px;
+    text-align: right;
+    padding-top: 20px;
+}
+.stats strong {
+    color: #BF0000;
     font-size: 14px;
     text-align: right;
     padding-top: 20px;
 }
 .title h2{
-    color: #008080;
+    color: #333;
     font-size: 16px;
     font-weight: bold;
     text-align: left;
@@ -161,7 +167,7 @@ body {
     margin: 0px;
 }
 .title h1{
-    color: #008080;
+    color: #333;
     font-size: 16px;
     font-weight: bold;
     text-align: left;
@@ -191,6 +197,7 @@ body {
     font-family: georgia;
     font-size: 16px;
     padding-bottom: 15px;
+    padding-left: 12px;
 }
 .comment span {
     color: #408000;
