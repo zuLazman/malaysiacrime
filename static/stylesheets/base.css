@@ -31,7 +31,7 @@ body {
 
 #nav ul {
 	text-align: right;
-	margin-left: 156px;
+	margin-left: 145px;
 	font-size: 15px;
 	margin-top: 46px;
 }
@@ -152,7 +152,7 @@ body {
     text-align: right;
     padding-top: 20px;
 }
-.stats strong {
+.stats strong{
     color: #BF0000;
     font-size: 14px;
     text-align: right;
@@ -163,7 +163,7 @@ body {
     font-size: 16px;
     font-weight: bold;
     text-align: left;
-    padding-top: 17px;
+    padding-top: 18px;
     margin: 0px;
 }
 .title h1{
@@ -173,7 +173,7 @@ body {
     text-align: left;
     padding-top: 17px;
     margin: 0px 0px 20px 12px;
-}
+} 
 .headlineinfo { color: #00F; font-size: 18px; }
 .sublinelinfo { color: #008080; font-size: 8px; }
 .headlinelist h2 {
@@ -197,7 +197,6 @@ body {
     font-family: georgia;
     font-size: 16px;
     padding-bottom: 15px;
-    padding-left: 12px;
 }
 .comment span {
     color: #408000;
