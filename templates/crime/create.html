@@ -29,24 +29,29 @@
         // ----- setup map
         function initialize() {
             if (GBrowserIsCompatible()) {
-                // ----- setup map
                 map = new GMap2(document.getElementById("map_create"));
-                map.setCenter(new GLatLng(3.0, 102.2), 9);
+                map.setCenter(
+                    new GLatLng(parseFloat(+"{{ request.POST.lat }}") || 3.0, parseFloat(+"{{ request.POST.lng }}") || 102.2),
+                    parseInt(+"{{ request.POST.zoom }}") || 9);
                 map.setUIToDefault();
                 map.disableScrollWheelZoom();
-                map.addOverlay(new CrimeMarker(G_DEFAULT_ICON));
+                map.addOverlay(new CrimeMarker(eval("{{ request.POST.icon }}" || "G_DEFAULT_ICON")));
                 setupHandler();
             }
         }
 
         // ----- setup event handler
+        function handleIcon(name, icon) {
+            map.clearOverlays();
+            map.addOverlay(new CrimeMarker(icon));
+            document.getElementById('id_icon').value = name;
+        }
         function setupHandler() {
             // handle icon
-            document.getElementById('id_icon_rempit').onclick = function() {
-                map.clearOverlays();
-                map.addOverlay(new CrimeMarker(REMPIT_ICON));                
-            }
-            
+            document.getElementById("id_icon").value = "{{ request.POST.icon }}" || "G_DEFAULT_ICON";
+            document.getElementById('id_icon_default').onclick = function() { handleIcon("G_DEFAULT_ICON", G_DEFAULT_ICON); }
+            document.getElementById('id_icon_rempit').onclick = function() { handleIcon("REMPIT_ICON", REMPIT_ICON); }
+
             // handle lat and lng
             document.getElementById("id_lat").value = map.getCenter().lat();
             document.getElementById("id_lng").value = map.getCenter().lng();
@@ -87,10 +92,11 @@
 
         <div class="label span-4">&nbsp;</div>
         <div id="map_create" class="span-20 last"></div>
-        
-        <div id="id_icon_rempit" class="span-1 last"><img src="{{ MEDIA_URL }}images/markers/rempit.png"></div>
 
-        <div class="span-24 last">{{ form.lat }} {{ form.lng }} {{ form.zoom }}</div>
+        <div id="id_icon_default" class="span-1"><img src="{{ MEDIA_URL }}images/icons/marker.png"></div>
+        <div id="id_icon_rempit" class="span-2 last"><img src="{{ MEDIA_URL }}images/icons/rempit.png"></div>
+
+        <div class="span-24 last">{{ form.icon }} {{ form.lat }} {{ form.lng }} {{ form.zoom }}</div>
 
         <div class="label span-4">Details :</div>
         <div class="field span-20 last">
