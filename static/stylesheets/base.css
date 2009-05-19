@@ -108,7 +108,7 @@ body {
     color: #BF0000;
     font-size: 30px;
     margin-top: 20px;
-    margin-bottom: 15px;
+    margin-bottom: 13px;
 }
 .subline {
     color: #555;
@@ -171,8 +171,8 @@ body {
     font-size: 16px;
     font-weight: bold;
     text-align: left;
-    padding-top: 17px;
-    margin: 0px 0px 20px 12px;
+    padding-top: 23px;
+    margin: 0px 0px 20px 0px;
 } 
 .headlineinfo { color: #00F; font-size: 18px; }
 .sublinelinfo { color: #008080; font-size: 8px; }

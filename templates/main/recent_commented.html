@@ -1,16 +1,91 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+{% extends "base.html" %}
+{% load comments %}
 
-<body>
+{% block map_script %}
+    <script type="text/javascript">
+    //<![CDATA[
+        var map = null;
+        var mgr = null;
+
+        // ----- initialize the map
+        function initialize() {
+            if (GBrowserIsCompatible()) {
+                map = new GMap2(document.getElementById("map_index"));
+                map.setCenter(new GLatLng(4.0, 102.2), 7);
+                map.setUIToDefault();
+                map.disableScrollWheelZoom();
+                window.setTimeout(setupMarkers, 0);
+            }
+        }
+
+        // ----- create markers
+        function createMarker(text, lat, lng) {
+            marker = new GMarker(new GLatLng(lat, lng));
+            marker.bindInfoWindow(text);
+            return marker;
+        }
+
+        // ----- setup markers
+        function setupMarkers() {
+            var batch = [];
+            {% for crime in crimes reversed %}
+                {% get_comment_count for crime as comment_count %}
+                batch.push(createMarker(
+                    "<span class='headlineinfo'>"
+                    + "<a href='{% url crime-show crime.id %}'>{{crime.headline}}</a></span><br/>"
+                    + "<span class='sublineinfo'>{{ crime.date|timesince:now }} ago at <strong>{{ crime.location }}</strong><br />"
+                    {% if comment_count %}
+                        + "// {{ comment_count }} comment{{ comment_count|pluralize }}"
+                    {% endif %}
+                    + "</span>",
+                    {{crime.lat}}, {{crime.lng}}))
+            {% endfor %}
+
+            mgr = new MarkerManager(map);
+            mgr.addMarkers(batch, 0);
+            mgr.refresh();
+        }
+    //]]>
+    </script>
+{% endblock %}
+
+{% block tab1 %}<li><a class="active" href="{% url main-recent-commented %}"><span>Recent Commented</span></a></li>{% endblock %}
+
+{% block title %}Malaysia Crime | Recent Commented{% endblock %}
+
+{% block content %}
+	<div class="title span-12 last">
+        <h2>Recent Commented</h2>
+    </div>
+
+    <div class="stats span-12 last">
+		
+    </div>
+    <div id="map_index" class="span-24 last"></div>
+
     {% for crime in crimes %}
-        {{ crime.headline }}
-        {{ crime.date|timesince:now }}
-        {{ crime.location }}
-        {{ crime.lat }}
-        {{ crime.lng }}
-        {{ crime.zoom }}
-        {{ crime.details }}
-        {{ crime.author }}
+        {% get_comment_count for crime as comment_count %}
+        <div class="headlinelist span-24 last"><h2><a href="{% url crime-show crime.id %}">{{ crime.headline }}</a></h2></div>
+        <div class="sublinelist span-24 last">
+            <span>{{ crime.date|timesince:now }}</span> ago at
+            <span class="location">{{ crime.location }}</span>
+            reported by <span>{{ crime.author }}</span>
+            {% if comment_count %}
+                // {{ comment_count }} comment{{ comment_count|pluralize }}
+            {% endif %}
+        </div>
     {% endfor %}
+{% endblock %}
 
-</body>
-</html>
+{% comment %}
+{% for crime in crimes %}
+    {{ crime.headline }}
+    {{ crime.date|timesince:now }}
+    {{ crime.location }}
+    {{ crime.lat }}
+    {{ crime.lng }}
+    {{ crime.zoom }}
+    {{ crime.details }}
+    {{ crime.author }}
+{% endfor %}
+{% endcomment %}
