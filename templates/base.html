@@ -15,22 +15,19 @@
 <body onload="initialize()" onunload="GUnload()">
 <div class="container">
 {% block header %}
-    <div class="header span-3">
+    <div class="header span-4">
         <h1><a href="/"><img src="{{ MEDIA_URL }}images/logo.gif" alt="Malaysia Crime Logo" title="Malaysia Crime | Home"/></a></h1>
     </div>
-	<div class="span-21 last" id="nav">
+	<div class="span-20 last" id="nav">
         <ul>
   			<li><a class="active" href="#"><span>Recent Comments</span></a></li>
   			<li><a href="#"><span>Recent Updated</span></a></li>
   			<li><a href="#"><span>Monitor</span></a></li>
-			<li><a href="#"><span>Report a Crime</span></a></li> 
+			<li><a href="{% url crime-create %}"><span>Report a Crime</span></a></li> 
 			<li><a href="#"><span>About</span></a></li>        
        	</ul>
-		<div class="clear"></div>
     </div>
-    <!-- <div class="report span-3 last">
-        <a href="{% url crime-create %}">Report a Crime</a>
-    </div> -->
+<div class="clear"></div>
 {% endblock %}
 
 {% block content %}

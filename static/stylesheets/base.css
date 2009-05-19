@@ -26,11 +26,12 @@ body {
 ------------------------------------ */
 #nav {
 	margin: 0px;
+	text-align: right;
 }
 
 #nav ul {
 	text-align: right;
-	margin-left: 196px;
+	margin-left: 156px;
 	font-size: 15px;
 	margin-top: 46px;
 }
@@ -150,6 +151,22 @@ body {
     font-size: 14px;
     text-align: right;
     padding-top: 20px;
+}
+.title h2{
+    color: #008080;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: left;
+    padding-top: 17px;
+    margin: 0px;
+}
+.title h1{
+    color: #008080;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: left;
+    padding-top: 17px;
+    margin: 0px 0px 20px 12px;
 }
 .headlineinfo { color: #00F; font-size: 18px; }
 .sublinelinfo { color: #008080; font-size: 8px; }

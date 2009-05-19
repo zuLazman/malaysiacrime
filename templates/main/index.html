@@ -52,7 +52,11 @@
 {% block title %}Malaysia Crime{% endblock %}
 
 {% block content %}
-    <div class="stats span-24 last">
+	<div class="title span-12 last">
+        <h2>Crime Reported</h2>
+    </div>
+
+    <div class="stats span-12 last">
         Showing <strong>{{ crimes.count }}</strong> of <strong>{{ crime_total }}</strong> Crime Reports
     </div>
     <div id="map_index" class="span-24 last"></div>
