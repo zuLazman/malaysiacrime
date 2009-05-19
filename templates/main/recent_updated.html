@@ -1,19 +1,3 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-
-<body>
-    {% for crime in crimes %}
-        {{ crime.headline }}
-        {{ crime.date|timesince:now }}
-        {{ crime.location }}
-        {{ crime.lat }}
-        {{ crime.lng }}
-        {{ crime.zoom }}
-        {{ crime.details }}
-        {{ crime.author }}
-    {% endfor %}
-
-</body>
-</html>
 {% extends "base.html" %}
 {% load comments %}
 
@@ -65,15 +49,17 @@
     </script>
 {% endblock %}
 
-{% block title %}Malaysia Crime{% endblock %}
+{% block tab2 %}<li><a class="active" href="{% url main-recent-updated %}"><span>Recent Updated</span></a></li>{% endblock %}
+
+{% block title %}Malaysia Crime | Recent Updated{% endblock %}
 
 {% block content %}
 	<div class="title span-12 last">
-        <h2>Crime Reported</h2>
+        <h2>Recent Updated</h2>
     </div>
 
     <div class="stats span-12 last">
-        Showing <strong>{{ crimes.count }}</strong> of <strong>{{ crime_total }}</strong> Crime Reports
+
     </div>
     <div id="map_index" class="span-24 last"></div>
 
@@ -90,3 +76,16 @@
         </div>
     {% endfor %}
 {% endblock %}
+
+{% comment %}
+{% for crime in crimes %}
+    {{ crime.headline }}
+    {{ crime.date|timesince:now }}
+    {{ crime.location }}
+    {{ crime.lat }}
+    {{ crime.lng }}
+    {{ crime.zoom }}
+    {{ crime.details }}
+    {{ crime.author }}
+{% endfor %}
+{% endcomment %}

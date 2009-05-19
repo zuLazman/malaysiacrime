@@ -56,7 +56,7 @@ body {
 #nav ul li a span {
 	height: 40px;
 	display: block; 
-	padding-left: 14px;
+	padding-left: 13px;
 	cursor: pointer;
 }
 
@@ -76,7 +76,7 @@ body {
 	background:url(../images/btn-L-hover.gif) left top no-repeat;  
 	height: 40px; 
 	display: block; 
-	padding-left: 14px;
+	padding-left: 13px;
 	cursor: pointer;
 }
 
@@ -97,7 +97,7 @@ body {
 	background:url(../images/btn-L.gif) left top no-repeat;  
 	height: 40px;
 	display: block; 
-	padding-left: 14px;
+	padding-left: 13px;
 	cursor: pointer;
 }
 
