@@ -96,4 +96,5 @@ INSTALLED_APPS = (
     'django.contrib.sitemaps',
     'crime',
     'main',
+    'monitor',
 )
