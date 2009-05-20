@@ -53,7 +53,7 @@ def subscribe_done(request, uuid, template_name='monitor/subscribe_done.html'):
         return HttpResponseRedirect(request.path)
 
     context = RequestContext(request, {
-        'email': moniton.email,
+        'moniton': moniton,
     })
     return render_to_response(template_name, context)
 
@@ -71,7 +71,7 @@ def subscribe_confirm(request, uuid, template_name='monitor/subscribe_confirm.ht
         return HttpResponseRedirect(request.path)
 
     context = RequestContext(request, {
-        'email': moniton.email,
+        'moniton': moniton,
     })
     return render_to_response(template_name, context)
 
@@ -91,7 +91,7 @@ def unsubscribe_done(request, uuid, template_name='monitor/unsubscribe_done.html
         return HttpResponseRedirect(request.path)
 
     context = RequestContext(request, {
-        'email': moniton.email,
+        'moniton': moniton,
     })
     return render_to_response(template_name, context)
 
@@ -106,7 +106,7 @@ def unsubscribe_confirm(request, uuid, template_name='monitor/unsubscribe_confir
         return HttpResponseRedirect(request.path)
 
     context = RequestContext(request, {
-        'email': moniton.email,
+        'moniton': moniton,
     })
     return render_to_response(template_name, context)
 

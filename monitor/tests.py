@@ -61,7 +61,7 @@ class MonitonTestCase(TestCase):
         response = self.client.get('/subscribe/confirm/%s/' % '03619ac2453211de8c651fabc0151a16')
         self.assertTemplateUsed(response, 'monitor/subscribe_confirm.html')
 
-        self.assertEquals(response.context['email'], 'unconfirm@example.com')
+        self.assertEquals(response.context['moniton'].email, 'unconfirm@example.com')
         self.assertTrue(Moniton.objects.get(email='unconfirm@example.com').registered)
 
     def test_get_subscribe_confirm_uuid_invalid(self):
