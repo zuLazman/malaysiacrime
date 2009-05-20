@@ -13,6 +13,5 @@ class Moniton(models.Model):
     add_uuid   = models.CharField(max_length=32, default='', blank=True)
     del_uuid   = models.CharField(max_length=32, default='', blank=True)
     add_date   = models.DateTimeField(null=True)
-    del_date   = models.DateTimeField(null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
