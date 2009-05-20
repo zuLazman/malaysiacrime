@@ -109,3 +109,17 @@ def unsubscribe_confirm(request, template_name='monitor/unsubscribe_confirm.html
         'email': moniton.email,
     })
     return render_to_response(template_name, context)
+
+def area(request, uuid, template_name='monitor/area.html'):
+    """
+    Show the monitoring area.
+    """
+    if request.method == 'GET':
+        moniton = get_object_or_404(Moniton, add_uuid=uuid)
+    else:
+        return HttpResponseRedirect(request.path)
+
+    context = RequestContext(request, {
+        'moniton': moniton,
+    })
+    return render_to_response(template_name, context)

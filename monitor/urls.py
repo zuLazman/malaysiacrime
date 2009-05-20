@@ -12,4 +12,5 @@ urlpatterns = patterns('',
     url(r'^unsubscribe/done/$', unsubscribe_done, name='monitor-unsubscribe-done'),
     url(r'^unsubscribe/confirm/$', unsubscribe_confirm, name='monitor-unsubscribe-confirm'),
 
+    url(r'^area/(?P<uuid>[\w\d]{32})/$', area, name='monitor-area'),
 )
