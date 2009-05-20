@@ -1,6 +1,6 @@
 Thank you for subscribing to Malaysia Crime Monitor service. Go  the link below to activate your subscription.
 
-http://www.malaysiacrime.com{% url monitor-subscribe-confirm %}?uuid={{ add_uuid }}
+http://www.malaysiacrime.com{% url monitor-subscribe-confirm add_uuid %}
 
 
 cheers,

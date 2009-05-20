@@ -36,7 +36,7 @@ class MonitonTestCase(TestCase):
 
         self.assertEquals(mail.outbox[0].to, [inputs['email']])
         self.assertEquals(mail.outbox[0].subject, 'Confirmation of Malaysia Crime Monitor subscription')
-        self.assertRedirects(response, 'subscribe/done/?uuid=%s' % Moniton.objects.latest('created_at').add_uuid)
+        self.assertRedirects(response, 'subscribe/done/%s/' % Moniton.objects.latest('created_at').add_uuid)
 
     def test_post_subscribe_email_invalid(self):
         """
@@ -56,7 +56,7 @@ class MonitonTestCase(TestCase):
         """
         Test confirmation a subscription.
         """
-        response = self.client.get('/subscribe/confirm/', {'uuid': '03619ac2453211de8c651fabc0151a16'})
+        response = self.client.get('/subscribe/confirm/%s/' % '03619ac2453211de8c651fabc0151a16')
         self.assertTemplateUsed(response, 'monitor/subscribe_confirm.html')
 
         self.assertEquals(response.context['email'], 'unconfirm@example.com')
@@ -73,7 +73,7 @@ class MonitonTestCase(TestCase):
         """
         Test requesting email for unsubscription confirmation.
         """
-        response = self.client.get('/unsubscribe/done/', {'uuid': '45368b7c454311de829b33b9aa2110db'})
+        response = self.client.get('/unsubscribe/done/%s/' % '45368b7c454311de829b33b9aa2110db')
         self.assertTemplateUsed(response, 'monitor/unsubscribe_done.html')
 
         self.assertEquals(mail.outbox[0].to, ['confirm@example.com'])
@@ -90,7 +90,7 @@ class MonitonTestCase(TestCase):
         """
         Test confirmation an unsubscription.
         """
-        response = self.client.get('/unsubscribe/confirm/', {'uuid': '4ad2302c454311de8b3387c74347e6f7'})
+        response = self.client.get('/unsubscribe/confirm/%s/' % '4ad2302c454311de8b3387c74347e6f7')
         self.assertTemplateUsed(response, 'monitor/unsubscribe_confirm.html')
         self.assertFalse(Moniton.objects.filter(email='confirm@example.com'))
 

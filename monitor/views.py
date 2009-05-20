@@ -32,7 +32,7 @@ def subscribe(request, form_class=SubscribeForm, template_name='monitor/subscrib
                 get_template('monitor/subscribe_email.txt').render(Context({'add_uuid': moniton.add_uuid})),
                 'dontreply@malaysiacrime.com', [moniton.email])
 
-            return redirect('%s?uuid=%s' % (reverse('monitor-subscribe-done'), moniton.add_uuid))
+            return redirect('monitor-subscribe-done', uuid=moniton.add_uuid)
     elif request.method == 'GET':
         form = form_class()
     else:
@@ -43,12 +43,12 @@ def subscribe(request, form_class=SubscribeForm, template_name='monitor/subscrib
     })
     return render_to_response(template_name, context)
 
-def subscribe_done(request, template_name='monitor/subscribe_done.html'):
+def subscribe_done(request, uuid, template_name='monitor/subscribe_done.html'):
     """
     Show successfully sent request for confirmation email.
     """
     if request.method == 'GET':
-        moniton = get_object_or_404(Moniton, add_uuid=request.GET.get('uuid', 'INVALID'))
+        moniton = get_object_or_404(Moniton, add_uuid=uuid)
     else:
         return HttpResponseRedirect(request.path)
 
@@ -57,12 +57,12 @@ def subscribe_done(request, template_name='monitor/subscribe_done.html'):
     })
     return render_to_response(template_name, context)
 
-def subscribe_confirm(request, template_name='monitor/subscribe_confirm.html'):
+def subscribe_confirm(request, uuid, template_name='monitor/subscribe_confirm.html'):
     """
     Registered the moniton. And show successfully registered.
     """
     if request.method == 'GET':
-        moniton = get_object_or_404(Moniton, add_uuid=request.GET.get('uuid', 'INVALID'))
+        moniton = get_object_or_404(Moniton, add_uuid=uuid)
         moniton.registered = True
         moniton.add_uuid = uuid1().hex # Reset uuid for starting unscubscribe process.
         moniton.add_date = datetime.now() # The confirmation timestamp.
@@ -75,12 +75,12 @@ def subscribe_confirm(request, template_name='monitor/subscribe_confirm.html'):
     })
     return render_to_response(template_name, context)
 
-def unsubscribe_done(request, template_name='monitor/unsubscribe_done.html'):
+def unsubscribe_done(request, uuid, template_name='monitor/unsubscribe_done.html'):
     """
     Send email to confirm unsubscribe.
     """
     if request.method == 'GET':
-        moniton = get_object_or_404(Moniton, add_uuid=request.GET.get('uuid', 'INVALID'))
+        moniton = get_object_or_404(Moniton, add_uuid=uuid)
 
         # Send confirmation email. Let exception bubble up to trigger email to ADMIN.
         send_mail(
@@ -95,12 +95,12 @@ def unsubscribe_done(request, template_name='monitor/unsubscribe_done.html'):
     })
     return render_to_response(template_name, context)
 
-def unsubscribe_confirm(request, template_name='monitor/unsubscribe_confirm.html'):
+def unsubscribe_confirm(request, uuid, template_name='monitor/unsubscribe_confirm.html'):
     """
     Unregistered the moniton. And show successfully unregistered.
     """
     if request.method == 'GET':
-        moniton = get_object_or_404(Moniton, del_uuid=request.GET.get('uuid', 'INVALID'))
+        moniton = get_object_or_404(Moniton, del_uuid=uuid)
         moniton.delete()
     else:
         return HttpResponseRedirect(request.path)
