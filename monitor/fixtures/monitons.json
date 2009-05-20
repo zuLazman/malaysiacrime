@@ -10,5 +10,18 @@
         "del_uuid": "3672b534454311deb4d7d7e2a2732e7b",
         "add_date": "2009-05-01 00:00:00",
         "created_at": "2009-04-04 00:00:00",
+        "updated_at": "2009-04-04 00:00:00"}},
+
+    {"pk": 2, "model": "monitor.moniton", "fields": {
+        "email": "confirm@example.com",
+        "north": "3",
+        "east": "103",
+        "south": "0",
+        "west": "100",
+        "registered": "True",
+        "add_uuid": "45368b7c454311de829b33b9aa2110db",
+        "del_uuid": "4ad2302c454311de8b3387c74347e6f7",
+        "add_date": "2009-05-01 00:00:00",
+        "created_at": "2009-04-04 00:00:00",
         "updated_at": "2009-04-04 00:00:00"}}
 ]
