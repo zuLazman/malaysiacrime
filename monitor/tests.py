@@ -9,6 +9,7 @@ class MonitonTestCase(TestCase):
     Test operations for crime areas monitoring.
     """
     urls = 'monitor.urls'
+    fixtures = ['monitor/fixtures/monitons.json']
 
     def setUp(self):
         pass
@@ -53,5 +54,27 @@ class MonitonTestCase(TestCase):
         response = self.client.post('/subscribe/', inputs, follow=True)
         self.assertFormError(response, 'form', 'email', 'Enter a valid e-mail address.')
 
+    def test_get_subscribe_confirm(self):
+        """
+        Test confirmation a subscription.
+        """
+        response = self.client.get('/subscribe/confirm/', {'uuid': '03619ac2453211de8c651fabc0151a16'})
+        self.assertTemplateUsed(response, 'monitor/subscribe_confirm.html')
+
+        self.assertEquals(response.context['email'], 'unconfirm@example.com')
+        self.assertTrue(Moniton.objects.get(email='unconfirm@example.com').registered)
+
+    def test_get_subscribe_confirm_uuid_invalid(self):
+        """
+        Test confirmation a subscription.
+        """
+        response = self.client.get('/subscribe/confirm/', {'uuid': 'xxx'})
+        self.assertTemplateUsed(response, '404.html')
+
     def tearDown(self):
         pass
+
+
+# Disabled TEMPLATE_DIRS so that custom templates would not intefere with tests.
+from django.conf import settings
+settings.TEMPLATE_DIRS = ()
