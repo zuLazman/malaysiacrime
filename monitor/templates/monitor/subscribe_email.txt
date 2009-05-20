@@ -1,11 +1,12 @@
-Thank you for subscribing to Malaysia Crime (http://www.malaysiacrime.com) Monitor service. Go  the link below to activate your subscription.
+Thank you for subscribing to Malaysia Crime Monitor service. Go  the link below to activate your subscription.
 
 http://www.malaysiacrime.com{% url monitor-subscribe-confirm %}?uuid={{ add_uuid }}
 
+
+cheers,
+Malaysia Crime
+
+http://www.malaysiacrime.com
+
+
 * If you have not subscribe to Malaysia Crime Monitor service, please ignore this email.
-
-
-Yours truly,
-~Kegan Gan
-
-Email : kegan@malaysiacrime.com
