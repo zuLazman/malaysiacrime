@@ -2,8 +2,6 @@
 {% load comments %}
 
 {% block map_script %}
-    <script src="http://gmaps-utility-library.googlecode.com/svn/trunk/markermanager/1.1/src/markermanager_packed.js" type="text/javascript"></script>
-    <script src="{% url main-icons-js %}" type="text/javascript"></script>
     <script type="text/javascript">
     //<![CDATA[
         var map = null;
@@ -21,8 +19,8 @@
         }
 
         // ----- create markers
-        function createMarker(text, lat, lng, icon) {
-            marker = new GMarker(new GLatLng(lat, lng), icon);
+        function createMarker(text, lat, lng) {
+            marker = new GMarker(new GLatLng(lat, lng));
             marker.bindInfoWindow(text);
             return marker;
         }
@@ -40,7 +38,7 @@
                         + "// {{ comment_count }} comment{{ comment_count|pluralize }}"
                     {% endif %}
                     + "</span>",
-                    {{ crime.lat }}, {{ crime.lng }}, {{ crime.icon }}))
+                    {{crime.lat}}, {{crime.lng}}))
             {% endfor %}
 
             mgr = new MarkerManager(map);
@@ -51,11 +49,17 @@
     </script>
 {% endblock %}
 
-{% block title %}Malaysia Crime{% endblock %}
+{% block tab1 %}<li><a class="active"><span>Recent Commented</span></a></li>{% endblock %}
+
+{% block title %}Malaysia Crime | Recent Commented{% endblock %}
 
 {% block content %}
-    <div class="stats span-24 last">
-        Showing <strong>{{ crimes.count }}</strong> of <strong>{{ crime_total }}</strong> Crime Reports
+	<div class="title span-12 last">
+        <h2>Recent Commented</h2>
+    </div>
+
+    <div class="stats span-12 last">
+		
     </div>
     <div id="map_index" class="span-24 last"></div>
 
@@ -72,3 +76,16 @@
         </div>
     {% endfor %}
 {% endblock %}
+
+{% comment %}
+{% for crime in crimes %}
+    {{ crime.headline }}
+    {{ crime.date|timesince:now }}
+    {{ crime.location }}
+    {{ crime.lat }}
+    {{ crime.lng }}
+    {{ crime.zoom }}
+    {{ crime.details }}
+    {{ crime.author }}
+{% endfor %}
+{% endcomment %}
