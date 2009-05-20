@@ -4,6 +4,7 @@ from uuid import uuid1
 from django.contrib.sites.models import Site
 from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
+from django.http import Http404
 from django.shortcuts import get_object_or_404, render_to_response, redirect
 from django.template import Context, RequestContext, Template
 from django.template.loader import get_template
@@ -47,6 +48,24 @@ def subscribe_done(request, template_name='monitor/subscribe_done.html'):
     """
     if request.method == 'GET':
         moniton = get_object_or_404(Moniton, add_uuid=request.GET.get('uuid', 'INVALID'))
+    else:
+        return HttpResponseRedirect(request.path)
+
+    context = RequestContext(request, {
+        'email': moniton.email,
+    })
+    return render_to_response(template_name, context)
+
+def subscribe_confirm(request, template_name='monitor/subscribe_confirm.html'):
+    """
+    Registered the moniton. And show successfully registered.
+    """
+    if request.method == 'GET':
+        moniton = get_object_or_404(Moniton, add_uuid=request.GET.get('uuid', 'INVALID'))
+        moniton.registered = True
+        moniton.add_uuid = uuid1().hex # Reset uuid for starting unscubscribe process.
+        moniton.add_date = datetime.now() # The confirmation timestamp.
+        moniton.save()
     else:
         return HttpResponseRedirect(request.path)
 
