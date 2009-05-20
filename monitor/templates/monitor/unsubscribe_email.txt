@@ -1,0 +1,12 @@
+You are receiving this email because you are unsubscribing from Malaysia Crime Monitor service. Click the link below to unsubscribe.
+
+http://www.malaysiacrime.com{% url monitor-unsubscribe-confirm del_uuid %}
+
+
+cheers,
+Malaysia Crime
+
+http://www.malaysiacrime.com
+
+
+* If you do not want to unsubscribe to Malaysia Crime Monitor service, please ignore this email.
