@@ -5,8 +5,8 @@ from views import *
 
 
 urlpatterns = patterns('',
-    url(r'subscribe/$', subscribe, name='monitor-subscribe'),
-    url(r'subscribe/done/$', subscribe_done, name='monitor-subscribe-done'),
-    url(r'subscribe/confirm/$', subscribe_confirm, name='monitor-subscribe-confirm'),
+    url(r'^subscribe/$', subscribe, name='monitor-subscribe'),
+    url(r'^subscribe/done/$', subscribe_done, name='monitor-subscribe-done'),
+    url(r'^subscribe/confirm/$', subscribe_confirm, name='monitor-subscribe-confirm'),
 
 )
