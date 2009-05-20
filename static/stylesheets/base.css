@@ -1,18 +1,16 @@
 @import url('blueprint/screen.css');
 
+body {
+	padding: 0px;
+	margin: 0px;
+	font-family: Arial, Helvetica, sans-serif;
+	background: url(../images/bg.gif) repeat-x ;
+}
+
 /* Header
 ----------------------------------------------- */
-.header { background-color: #e5ecf9; border-bottom: 1px dotted #36c; }
-.header a {
-    color: #000;
-    font-size: 36px;
-    font-weight: bold;
-    padding: 3px 20px;
-    text-decoration: none;
-}
+.header { padding-top: 5px;}
 .header h1 {
-    color: #004990;
-    font-size: 16px;
     margin: 5px 0px;
 }
 .report { text-align: right; padding: 3px 0px; }
@@ -24,14 +22,93 @@
 }
 .report a:hover { text-decoration: underline; }
 
+/* Nav
+------------------------------------ */
+#nav {
+	margin: 0px;
+	text-align: right;
+}
+
+#nav ul {
+	text-align: right;
+	margin-left: 145px;
+	font-size: 15px;
+	margin-top: 46px;
+}
+
+#nav ul li {
+	display: inline;
+	list-style-type: none;
+}
+
+#nav ul li a {
+	color: #F9F9F9;  
+	text-decoration: none; 
+	height: 40px; 
+	line-height: 40px;
+	float: left;
+	display: block;
+	cursor: pointer;
+	padding-right: 12px;
+	margin-left: 8px;
+}
+
+#nav ul li a span {
+	height: 40px;
+	display: block; 
+	padding-left: 13px;
+	cursor: pointer;
+}
+
+#nav ul li a:hover {
+	color: #F9F9F9;  
+	text-decoration: none; 
+	height: 40px; 
+	line-height: 40px;
+	display: block;
+	background: url(../images/btn-R-hover.gif) right top no-repeat;
+	cursor: pointer;
+	padding-right: 12px;
+	margin-left: 8px;
+}
+
+#nav ul li a:hover span {
+	background:url(../images/btn-L-hover.gif) left top no-repeat;  
+	height: 40px; 
+	display: block; 
+	padding-left: 13px;
+	cursor: pointer;
+}
+
+#nav ul li a.active {
+	color: #F9F9F9;  
+	text-decoration: none; 
+	height: 40px; 
+	line-height: 40px;
+	float: left;
+	display: block;
+	background: url(../images/btn-R.gif) right top no-repeat;
+	cursor: pointer;
+	padding-right: 12px;
+	margin-left: 8px;
+}
+
+#nav ul li a.active span {
+	background:url(../images/btn-L.gif) left top no-repeat;  
+	height: 40px;
+	display: block; 
+	padding-left: 13px;
+	cursor: pointer;
+}
+
 /* Show Crime
 ----------------------------------------------- */
 #map_show { width: 720px; height:350px; margin-bottom: 15px; border: 1px solid #CCC; }
 .headline h1 {
-    color: #00F;
+    color: #BF0000;
     font-size: 30px;
     margin-top: 20px;
-    margin-bottom: 15px;
+    margin-bottom: 13px;
 }
 .subline {
     color: #555;
@@ -70,11 +147,33 @@
 /* Main Index
 ----------------------------------------------- */
 .stats {
-    color: #008080;
+    color: #333;
     font-size: 14px;
     text-align: right;
     padding-top: 20px;
 }
+.stats strong{
+    color: #BF0000;
+    font-size: 14px;
+    text-align: right;
+    padding-top: 20px;
+}
+.title h2{
+    color: #333;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: left;
+    padding-top: 18px;
+    margin: 0px;
+}
+.title h1{
+    color: #333;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: left;
+    padding-top: 23px;
+    margin: 0px 0px 20px 0px;
+} 
 .headlineinfo { color: #00F; font-size: 18px; }
 .sublinelinfo { color: #008080; font-size: 8px; }
 .headlinelist h2 {
