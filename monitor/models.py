@@ -9,6 +9,7 @@ class Moniton(models.Model):
     east       = models.FloatField()
     south      = models.FloatField()
     west       = models.FloatField()
+    zoom       = models.IntegerField()
     registered = models.BooleanField(default=False)
     add_uuid   = models.CharField(max_length=32, default='', blank=True)
     del_uuid   = models.CharField(max_length=32, default='', blank=True)
