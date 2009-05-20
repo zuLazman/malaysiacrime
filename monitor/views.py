@@ -20,8 +20,8 @@ def subscribe(request, form_class=SubscribeForm, template_name='monitor/subscrib
         form = form_class(request.POST)
         if form.is_valid():
             moniton = form.save(commit=False)
-            moniton.add_uuid = uuid1().hex
-            moniton.add_date = datetime.now()
+            moniton.add_uuid = uuid1().hex # uuid used for confirmation.
+            moniton.add_date = datetime.now() # Register but unconfirm timestamp.
             moniton.save()
 
             # Send confirmation email. Let exception bubble up to trigger email to ADMIN.
@@ -43,10 +43,10 @@ def subscribe(request, form_class=SubscribeForm, template_name='monitor/subscrib
 
 def subscribe_done(request, template_name='monitor/subscribe_done.html'):
     """
-    Confirm to user email was sent.
+    Show successfully sent request for confirmation email.
     """
     if request.method == 'GET':
-        moniton = get_object_or_404(Moniton, add_uuid=request.GET.get('uuid', ''))
+        moniton = get_object_or_404(Moniton, add_uuid=request.GET.get('uuid', 'INVALID'))
     else:
         return HttpResponseRedirect(request.path)
 
