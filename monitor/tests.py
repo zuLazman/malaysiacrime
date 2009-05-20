@@ -32,7 +32,6 @@ class MonitonTestCase(TestCase):
             'south': 1.1234,
             'west': 1.1234,
         }
-
         response = self.client.post('/subscribe/', inputs)
 
         self.assertEquals(mail.outbox[0].to, [inputs['email']])
@@ -50,7 +49,6 @@ class MonitonTestCase(TestCase):
             'south': 1.1234,
             'west': 1.1234,
         }
-
         response = self.client.post('/subscribe/', inputs, follow=True)
         self.assertFormError(response, 'form', 'email', 'Enter a valid e-mail address.')
 
