@@ -1,23 +1,57 @@
-"""
-This file demonstrates two different styles of tests (one doctest and one
-unittest). These will both pass when you run "manage.py test".
-
-Replace these with more appropriate tests for your application.
-"""
-
+from django.core import mail
 from django.test import TestCase
 
-class SimpleTest(TestCase):
-    def test_basic_addition(self):
+from models import Moniton
+
+
+class MonitonTestCase(TestCase):
+    """
+    Test operations for crime areas monitoring.
+    """
+    urls = 'monitor.urls'
+
+    def setUp(self):
+        pass
+
+    def test_get_subscribe(self):
         """
-        Tests that 1 + 1 always equals 2.
+        Test accessing subscribe page.
         """
-        self.failUnlessEqual(1 + 1, 2)
+        response = self.client.get('/subscribe/')
+        self.assertTemplateUsed(response, 'monitor/subscribe.html')
 
-__test__ = {"doctest": """
-Another way to test that 1 + 1 is equal to 2.
+    def test_post_subscribe(self):
+        """
+        Test subscribing to monitor.
+        """
+        inputs = {
+            'email': 'kegan@kegan.info',
+            'north': 1.1234,
+            'east': 1.1234,
+            'south': 1.1234,
+            'west': 1.1234,
+        }
 
->>> 1 + 1 == 2
-True
-"""}
+        response = self.client.post('/subscribe/', inputs)
 
+        self.assertEquals(mail.outbox[0].to, [inputs['email']])
+        self.assertEquals(mail.outbox[0].subject, 'Confirmation of Malaysia Crime Monitor subscription')
+        self.assertRedirects(response, 'subscribe/done/?uuid=%s' % Moniton.objects.latest('created_at').add_uuid)
+
+    def test_post_subscribe_email_invalid(self):
+        """
+        Test subscribing to monitor.
+        """
+        inputs = {
+            'email': 'xxx',
+            'north': 1.1234,
+            'east': 1.1234,
+            'south': 1.1234,
+            'west': 1.1234,
+        }
+
+        response = self.client.post('/subscribe/', inputs, follow=True)
+        self.assertFormError(response, 'form', 'email', 'Enter a valid e-mail address.')
+
+    def tearDown(self):
+        pass
