@@ -101,6 +101,14 @@ class MonitonTestCase(TestCase):
         response = self.client.get('/unsubscribe/confirm/', {'uuid': 'xxx'})
         self.assertTemplateUsed(response, '404.html')
 
+    def test_get_area(self):
+        """
+        Test showing the area of subscription.
+        """
+        response = self.client.get('/area/%s/' % '45368b7c454311de829b33b9aa2110db')
+        self.assertTemplateUsed(response, 'monitor/area.html')
+        self.assertEquals(response.context['moniton'], Moniton.objects.get(pk=2))
+
     def tearDown(self):
         pass
 
