@@ -69,6 +69,38 @@ class MonitonTestCase(TestCase):
         response = self.client.get('/subscribe/confirm/', {'uuid': 'xxx'})
         self.assertTemplateUsed(response, '404.html')
 
+    def test_get_unsubscribe_done(self):
+        """
+        Test requesting email for unsubscription confirmation.
+        """
+        response = self.client.get('/unsubscribe/done/', {'uuid': '45368b7c454311de829b33b9aa2110db'})
+        self.assertTemplateUsed(response, 'monitor/unsubscribe_done.html')
+
+        self.assertEquals(mail.outbox[0].to, ['confirm@example.com'])
+        self.assertEquals(mail.outbox[0].subject, 'Confirmation of Malaysia Crime Monitor unsubscription')
+
+    def test_get_unsubscribe_done_uuid_invalid(self):
+        """
+        Test requesting email for unsubscription confirmation with invalid uuid.
+        """
+        response = self.client.get('/unsubscribe/done/', {'uuid': 'xxx'})
+        self.assertTemplateUsed(response, '404.html')
+
+    def test_get_unsubscribe_confirm(self):
+        """
+        Test confirmation an unsubscription.
+        """
+        response = self.client.get('/unsubscribe/confirm/', {'uuid': '4ad2302c454311de8b3387c74347e6f7'})
+        self.assertTemplateUsed(response, 'monitor/unsubscribe_confirm.html')
+        self.assertFalse(Moniton.objects.filter(email='confirm@example.com'))
+
+    def test_get_unsubscribe_confirm_uuid_invalid(self):
+        """
+        Test confirmation an unsubscription with invalid uuid.
+        """
+        response = self.client.get('/unsubscribe/confirm/', {'uuid': 'xxx'})
+        self.assertTemplateUsed(response, '404.html')
+
     def tearDown(self):
         pass
 
