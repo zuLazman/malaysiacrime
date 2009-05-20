@@ -21,7 +21,8 @@ def subscribe(request, form_class=SubscribeForm, template_name='monitor/subscrib
         form = form_class(request.POST)
         if form.is_valid():
             moniton = form.save(commit=False)
-            moniton.add_uuid = uuid1().hex # uuid used for confirmation.
+            moniton.add_uuid = uuid1().hex # uuid used for subscribe confirmation.
+            moniton.del_uuid = uuid1().hex # uuid used foru nsubscribeconfirmation.
             moniton.add_date = datetime.now() # Register but unconfirm timestamp.
             moniton.save()
 
@@ -66,6 +67,41 @@ def subscribe_confirm(request, template_name='monitor/subscribe_confirm.html'):
         moniton.add_uuid = uuid1().hex # Reset uuid for starting unscubscribe process.
         moniton.add_date = datetime.now() # The confirmation timestamp.
         moniton.save()
+    else:
+        return HttpResponseRedirect(request.path)
+
+    context = RequestContext(request, {
+        'email': moniton.email,
+    })
+    return render_to_response(template_name, context)
+
+def unsubscribe_done(request, template_name='monitor/unsubscribe_done.html'):
+    """
+    Send email to confirm unsubscribe.
+    """
+    if request.method == 'GET':
+        moniton = get_object_or_404(Moniton, add_uuid=request.GET.get('uuid', 'INVALID'))
+
+        # Send confirmation email. Let exception bubble up to trigger email to ADMIN.
+        send_mail(
+            'Confirmation of Malaysia Crime Monitor unsubscription',
+            get_template('monitor/unsubscribe_email.txt').render(Context({'moniton': moniton})),
+            'dontreply@malaysiacrime.com', [moniton.email])
+    else:
+        return HttpResponseRedirect(request.path)
+
+    context = RequestContext(request, {
+        'email': moniton.email,
+    })
+    return render_to_response(template_name, context)
+
+def unsubscribe_confirm(request, template_name='monitor/unsubscribe_confirm.html'):
+    """
+    Unregistered the moniton. And show successfully unregistered.
+    """
+    if request.method == 'GET':
+        moniton = get_object_or_404(Moniton, del_uuid=request.GET.get('uuid', 'INVALID'))
+        moniton.delete()
     else:
         return HttpResponseRedirect(request.path)
 
