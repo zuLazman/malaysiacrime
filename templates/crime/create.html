@@ -95,8 +95,12 @@
         <div class="label span-4">&nbsp;</div>
         <div id="map_create" class="span-20 last"></div>
 
-        <div id="id_icon_default" class="span-1"><img src="{{ MEDIA_URL }}images/icons/marker.png"></div>
-        <div id="id_icon_rempit" class="span-2 last"><img src="{{ MEDIA_URL }}images/icons/rempit.png"></div>
+		<div class="span-3 last" id="nav-img">
+			<ul>
+				<li id="id_icon_default"><img src="{{ MEDIA_URL }}images/icons/marker.png"></li>
+				<li id="id_icon_rempit"><img src="{{ MEDIA_URL }}images/icons/rempit.png"></li>
+			</ul>
+		</div>
 
         <div class="span-24 last">{{ form.icon }} {{ form.lat }} {{ form.lng }} {{ form.zoom }}</div>
 

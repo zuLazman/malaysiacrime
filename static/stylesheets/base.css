@@ -144,6 +144,57 @@ body {
 ----------------------------------------------- */
 #map_update { width: 670px; height:350px; margin-bottom: 15px; border: 1px solid #CCC; }
 
+/* Marker
+----------------------------------------------- */
+#nav-img {
+    margin: 0px;
+    padding: 0px;
+}
+
+#nav-img ul {
+    margin: 0px 0px 0px -30px;
+}
+
+#nav-img ul li {
+    margin: 0px;
+    list-style-type: none;
+    padding: 5px 10px;
+    margin-bottom: 4px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    width: 35px;
+}
+
+#nav-img ul li#id_icon_default {
+    padding: 8px 3px 4px 17px;
+    display: block;
+}
+
+#nav-img ul li#id_icon_rempit {
+    padding: 8px 11px 4px 9px;
+    display: block;
+}
+
+#nav-img ul li#id_icon_gun {
+    padding: 8px 3px 4px 17px;
+    display: block;
+}
+
+#nav-img ul li#id_icon_skull {
+    padding: 8px 3px 4px 17px;
+    display: block;
+}
+
+#nav-img ul li#id_icon_parang {
+    padding: 8px 3px 4px 17px;
+    display: block;
+}
+
+#nav-img ul li#id_icon_rape {
+    padding: 8px 3px 4px 17px;
+    display: block;
+}
+
 /* Main Index
 ----------------------------------------------- */
 .stats {
