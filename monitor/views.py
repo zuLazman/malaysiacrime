@@ -85,7 +85,7 @@ def unsubscribe_done(request, uuid, template_name='monitor/unsubscribe_done.html
         # Send confirmation email. Let exception bubble up to trigger email to ADMIN.
         send_mail(
             'Confirmation of Malaysia Crime Monitor unsubscription',
-            get_template('monitor/unsubscribe_email.txt').render(Context({'moniton': moniton})),
+            get_template('monitor/unsubscribe_email.txt').render(Context({'del_uuid': moniton.del_uuid})),
             'dontreply@malaysiacrime.com', [moniton.email])
     else:
         return HttpResponseRedirect(request.path)
