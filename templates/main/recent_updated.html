@@ -2,6 +2,8 @@
 {% load comments %}
 
 {% block map_script %}
+    <script src="http://gmaps-utility-library.googlecode.com/svn/trunk/markermanager/1.1/src/markermanager_packed.js" type="text/javascript"></script>
+    <script src="{% url main-icons-js %}" type="text/javascript"></script>
     <script type="text/javascript">
     //<![CDATA[
         var map = null;
@@ -54,12 +56,12 @@
 {% block title %}Malaysia Crime | Recent Updated{% endblock %}
 
 {% block content %}
-	<div class="title span-12 last">
-        <h2>Recent Updated</h2>
+    <div class="title span-18">
+        <h2>Recent Updated Crimes</h2>
     </div>
 
-    <div class="stats span-12 last">
-
+    <div class="stats span-6 last">
+        Showing <strong>{{ crimes.count }}</strong> of <strong>{{ crime_total }}</strong> Crime Reports
     </div>
     <div id="map_index" class="span-24 last"></div>
 
@@ -76,16 +78,3 @@
         </div>
     {% endfor %}
 {% endblock %}
-
-{% comment %}
-{% for crime in crimes %}
-    {{ crime.headline }}
-    {{ crime.date|timesince:now }}
-    {{ crime.location }}
-    {{ crime.lat }}
-    {{ crime.lng }}
-    {{ crime.zoom }}
-    {{ crime.details }}
-    {{ crime.author }}
-{% endfor %}
-{% endcomment %}
