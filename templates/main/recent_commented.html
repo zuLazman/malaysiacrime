@@ -21,8 +21,9 @@
         }
 
         // ----- create markers
-        function createMarker(text, lat, lng) {
-            marker = new GMarker(new GLatLng(lat, lng));
+        // ----- create markers
+        function createMarker(text, lat, lng, icon) {
+            marker = new GMarker(new GLatLng(lat, lng), icon);
             marker.bindInfoWindow(text);
             return marker;
         }
@@ -40,7 +41,7 @@
                         + "// {{ comment_count }} comment{{ comment_count|pluralize }}"
                     {% endif %}
                     + "</span>",
-                    {{crime.lat}}, {{crime.lng}}))
+                    {{ crime.lat }}, {{ crime.lng }}, {{ crime.icon }}))
             {% endfor %}
 
             mgr = new MarkerManager(map);
