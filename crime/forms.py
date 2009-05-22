@@ -4,7 +4,7 @@ from django.utils.translation import ugettext as _
 from models import Crime
 
 
-ICONS = ('REMPIT_ICON', 'G_DEFAULT_ICON')
+ICONS = ('G_DEFAULT_ICON', 'REMPIT_ICON', 'GUN_ICON', 'SKULL_ICON', 'PARANG_ICON', 'RAPE_ICON')
 
 class CrimeCreateForm(forms.ModelForm):
     """
