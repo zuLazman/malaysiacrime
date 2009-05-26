@@ -16,3 +16,18 @@ class Moniton(models.Model):
     add_date   = models.DateTimeField(null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __unicode__(self):
+        return email
+
+class Log(models.Model):
+    """
+    Log the date and time of processing the monitons.
+    """
+    start      = models.DateTimeField()
+    end        = models.DateTimeField(null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __unicode__(self):
+        return '%s : %s' % (self.start, self.end)
