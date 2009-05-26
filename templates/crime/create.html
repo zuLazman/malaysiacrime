@@ -12,8 +12,8 @@
             var div = document.createElement("div");
             div.style.position = "absolute";
             div.innerHTML = ""
-                + "<img style='position:absolute;' src='" + this.icon_.image + "'>"
-                + "<img style='position:absolute;' src='" + this.icon_.shadow + "'>";
+                + "<img style='position:absolute;' src='" + this.icon_.shadow + "'>"
+                + "<img style='position:absolute;' src='" + this.icon_.image + "'>";
             this.div_ = div;
             this.map_ = map;
             map.getPane(G_MAP_MAP_PANE).appendChild(this.div_);
