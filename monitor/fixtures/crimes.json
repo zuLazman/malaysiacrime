@@ -1,0 +1,57 @@
+[
+    {"pk": 1, "model": "crime.crime", "fields": {
+        "headline": "Terrible Crime Middle In Date",
+        "author": "Nizar",
+        "location": "Ipoh, Perak",
+        "date": "2009-03-30",
+        "icon": "G_DEFAULT_ICON",
+        "lat": 0,
+        "lng": 0,
+        "zoom": 13,
+        "details": "Stealing of power by force.",
+        "password": "123456",
+        "created_at": "2009-04-04 12:00:00",
+        "updated_at": "2009-04-04 12:00:00"}},
+
+    {"pk": 2, "model": "crime.crime", "fields": {
+        "headline": "Terrible Crime Middle Out Date",
+        "author": "Nizar",
+        "location": "Ipoh, Perak",
+        "date": "2009-01-31",
+        "icon": "G_DEFAULT_ICON",
+        "lat": 0,
+        "lng": 0,
+        "zoom": 13,
+        "details": "Stealing of power by force.",
+        "password": "123456",
+        "created_at": "2009-01-31 12:00:00",
+        "updated_at": "2009-01-31 12:00:00"}},
+        
+    {"pk": 3, "model": "crime.crime", "fields": {
+        "headline": "Terrible Crime East",
+        "author": "Nizar",
+        "location": "Ipoh, Perak",
+        "date": "2009-03-30",
+        "icon": "G_DEFAULT_ICON",
+        "lat": 0,
+        "lng": 50,
+        "zoom": 13,
+        "details": "Stealing of power by force.",
+        "password": "123456",
+        "created_at": "2009-04-04 12:00:00",
+        "updated_at": "2009-04-04 12:00:00"}},
+                
+    {"pk": 4, "model": "crime.crime", "fields": {
+        "headline": "Terrible Crime West",
+        "author": "Nizar",
+        "location": "Ipoh, Perak",
+        "date": "2009-03-30",
+        "icon": "G_DEFAULT_ICON",
+        "lat": 0,
+        "lng": -50,
+        "zoom": 13,
+        "details": "Stealing of power by force.",
+        "password": "123456",
+        "created_at": "2009-04-04 12:00:00",
+        "updated_at": "2009-04-04 12:00:00"}}        
+]

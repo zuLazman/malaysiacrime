@@ -1,10 +1,10 @@
 [
     {"pk": 1, "model": "monitor.moniton", "fields": {
         "email": "unconfirm@example.com",
-        "north": "3",
-        "east": "103",
-        "south": "0",
-        "west": "100",
+        "north": "90",
+        "east": "180",
+        "south": "-90",
+        "west": "-180",
         "zoom": "9",
         "registered": "False",
         "add_uuid": "03619ac2453211de8c651fabc0151a16",
@@ -14,16 +14,31 @@
         "updated_at": "2009-04-04 00:00:00"}},
 
     {"pk": 2, "model": "monitor.moniton", "fields": {
-        "email": "confirm@example.com",
-        "north": "3",
-        "east": "103",
-        "south": "0",
-        "west": "100",
+        "email": "confirm1@example.com",
+        "north": "90",
+        "east": "180",
+        "south": "-90",
+        "west": "-10",
         "zoom": "9",
         "registered": "True",
         "add_uuid": "45368b7c454311de829b33b9aa2110db",
         "del_uuid": "4ad2302c454311de8b3387c74347e6f7",
         "add_date": "2009-05-01 00:00:00",
         "created_at": "2009-04-04 00:00:00",
+        "updated_at": "2009-04-04 00:00:00"}},
+
+    {"pk": 3, "model": "monitor.moniton", "fields": {
+        "email": "confirm2@example.com",
+        "north": "90",
+        "east": "10",
+        "south": "-90",
+        "west": "-180",
+        "zoom": "9",
+        "registered": "True",
+        "add_uuid": "47f9852449ff11de9f33cf0e06e846fd",
+        "del_uuid": "5432a3fc49ff11de854c1730b0756f01",
+        "add_date": "2009-05-01 00:00:00",
+        "created_at": "2009-04-04 00:00:00",
         "updated_at": "2009-04-04 00:00:00"}}
+
 ]
