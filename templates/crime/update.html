@@ -138,7 +138,7 @@
 
         <div class="label span-4">&nbsp;</div>
         <div class="field span-20 last">
-            <input type="submit" value="Update this Report">&nbsp;&nbsp;&nbsp;&nbsp;<a href="{% url crime-show crime.id %}">Cancel</a>
+            <input type="submit" value="Update this Report">&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ crime.get_absolute_url }}">Cancel</a>
         </div>
     </form>
 {% endblock %}
