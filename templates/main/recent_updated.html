@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load comments %}
 
+{% block meta %}
+    <meta name="description" content="Malaysia Crime News on Google Map">
+{% endblock %}
+
 {% block map_script %}
     <script src="http://gmaps-utility-library.googlecode.com/svn/trunk/markermanager/1.1/src/markermanager_packed.js" type="text/javascript"></script>
     <script src="{% url main-icons-js %}" type="text/javascript"></script>
@@ -53,7 +57,7 @@
 
 {% block tab2 %}<li><a class="active"><span>Recent Updated</span></a></li>{% endblock %}
 
-{% block title %}Malaysia Crime | Recent Updated{% endblock %}
+{% block title %}Recent Updated - Malaysia Crime{% endblock %}
 
 {% block content %}
     <div class="title span-18">
