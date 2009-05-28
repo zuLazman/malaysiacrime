@@ -11,11 +11,18 @@ class ShowTestCase(TestCase):
     def setUp(self):
         pass
 
-    def test_get_show(self):
+    def test_get_show_id(self):
         """
-        Test accessing show page.
+        Test accessing show id page which redirect to show title.
         """
         response = self.client.get('/show/1/')
+        self.assertRedirects(response, '/title/terrible-crime/', status_code=301)
+
+    def test_get_show_title(self):
+        """
+        Test accessing show page via slug.
+        """
+        response = self.client.get('/title/terrible-crime/')
         self.assertTemplateUsed(response, 'crime/show.html')
 
         self.assertEquals(response.context['crime'].id, 1)

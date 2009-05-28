@@ -41,7 +41,7 @@ class UpdateTestCase(TestCase):
             'password': "123456",
         }
         response = self.client.post('/update/1/', inputs)
-        self.assertRedirects(response, '/show/1/')
+        self.assertRedirects(response, '/title/terrible-crime-updated/')
 
         crime = Crime.objects.get(pk=1)
         self.assertEquals(crime.headline, inputs['headline'])

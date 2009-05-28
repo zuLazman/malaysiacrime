@@ -38,7 +38,7 @@ class CreateTestCase(TestCase):
             'password2': "123456",
         }
         response = self.client.post('/create/', inputs)
-        self.assertRedirects(response, '/show/1/')
+        self.assertRedirects(response, '/title/terrible-crime/')
 
         crime = Crime.objects.latest('created_at')
         self.assertEquals(crime.headline, inputs['headline'])
