@@ -2,7 +2,7 @@ from datetime import datetime
 
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render_to_response
+from django.shortcuts import get_object_or_404, redirect, render_to_response
 from django.template import RequestContext
 
 from forms import CrimeCreateForm, CrimeUpdateForm
@@ -15,6 +15,16 @@ def show(request, id, template_name='crime/show.html'):
     """
     if request.method == 'GET':
         crime = get_object_or_404(Crime, pk=id)
+        return redirect(crime, permanent=True)
+    else:
+        return HttpResponseRedirect(request.path)
+
+def title(request, slug, template_name='crime/show.html'):
+    """
+    Show a reported crime by it's slug.
+    """
+    if request.method == 'GET':
+        crime = get_object_or_404(Crime, slug=slug)
     else:
         return HttpResponseRedirect(request.path)
 
@@ -32,7 +42,7 @@ def create(request, form_class=CrimeCreateForm, template_name='crime/create.html
         form = form_class(request.POST)
         if form.is_valid():
             crime = form.save()
-            return HttpResponseRedirect(reverse('crime-show', args=[crime.id]))
+            return redirect(crime)
     elif request.method == 'GET':
         form = form_class()
     else:
@@ -53,7 +63,7 @@ def update(request, id, form_class=CrimeUpdateForm, template_name='crime/update.
         form = form_class(request.POST, instance=crime)
         if form.is_valid():
             crime = form.save()
-            return HttpResponseRedirect(reverse('crime-show', args=[crime.id]))
+            return redirect(crime)
     elif request.method == 'GET':
         crime.password = ""
         form = form_class(instance=crime)
