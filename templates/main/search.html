@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Search - Malaysia Crime{% endblock %}
+
+{% block map_script %}
+    <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+    <script type="text/javascript">
+      google.load('search', '1');
+      google.setOnLoadCallback(function(){
+        new google.search.CustomSearchControl().draw('cse');
+      }, true);
+    </script>
+{% endblock %}
+
+{% block tab4 %}<li><a class="active"><span>Search</span></a></li>{% endblock %}
+
+{% block content %}
+    <div class="title span-18 last">
+        <h2>Search Malaysia Crime</h2>
+    </div>
+
+    <!-- Google Custom Search Element -->
+    <div id="cse" class="span-24 last">
+        Loading
+    </div>
+{% endblock %}
