@@ -103,7 +103,7 @@ body {
 
 /* Show Crime
 ----------------------------------------------- */
-#map_show { width: 720px; height:350px; margin-bottom: 15px; border: 1px solid #CCC; }
+#map_show { width: 950px; height:350px; margin-bottom: 15px; border: 1px solid #CCC; }
 .headline h1 {
     color: #BF0000;
     font-size: 30px;
