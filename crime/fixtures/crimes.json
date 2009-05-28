@@ -1,6 +1,7 @@
 [
     {"pk": 1, "model": "crime.crime", "fields": {
         "headline": "Terrible Crime",
+        "slug": "terrible-crime",
         "author": "Nizar",
         "location": "Ipoh, Perak",
         "date": "2009-03-30",
