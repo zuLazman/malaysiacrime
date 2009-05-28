@@ -52,9 +52,9 @@ class MainTestCase(TestCase):
         """
         response = self.client.get('/sitemap.xml')
 
-        self.assertEquals(response.context['urlset'][0]['location'], "http://example.com/crime/show/1/")
-        self.assertEquals(response.context['urlset'][1]['location'], "http://example.com/crime/show/2/")
-        self.assertEquals(response.context['urlset'][2]['location'], "http://example.com/crime/show/3/")
+        self.assertEquals(response.context['urlset'][0]['location'], "http://example.com/crime/title/terrible-crime-2/")
+        self.assertEquals(response.context['urlset'][1]['location'], "http://example.com/crime/title/kidnap-of-dpm/")
+        self.assertEquals(response.context['urlset'][2]['location'], "http://example.com/crime/title/daylight-extortion/")
 
         self.assertEquals(response.context['urlset'][0]['lastmod'], datetime(2009,4,1))
         self.assertEquals(response.context['urlset'][1]['lastmod'], datetime(2009,4,30))

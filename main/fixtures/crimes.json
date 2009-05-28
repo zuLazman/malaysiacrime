@@ -1,6 +1,7 @@
 [
     {"pk": 1, "model": "crime.crime", "fields": {
         "headline": "Terrible Crime 2",
+        "slug": "terrible-crime-2",
         "author": "Nizar",
         "location": "Ipoh, Perak",
         "date": "2009-03-30",
@@ -14,6 +15,7 @@
 
     {"pk": 2, "model": "crime.crime", "fields": {
         "headline": "Kidnap of DPM",
+        "slug": "kidnap-of-dpm",
         "author": "Anwar",
         "location": "Kuala Lumpur",
         "date": "2009-03-20",
@@ -27,6 +29,7 @@
 
     {"pk": 3, "model": "crime.crime", "fields": {
         "headline": "Daylight Extortion",
+        "slug": "daylight-extortion",
         "author": "Hishamuddin",
         "location": "Kuala Lumpur",
         "date": "2009-03-10",
