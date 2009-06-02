@@ -14,10 +14,10 @@
 <body onload="initialize()" onunload="GUnload()">
 <div class="container">
 {% block header %}
-    <div class="header span-4">
+    <div class="header span-6">
         <h1><a href="/"><img src="{{ MEDIA_URL }}images/logo.gif" alt="Malaysia Crime Logo" title="Malaysia Crime"/></a></h1>
     </div>
-	<div class="span-20 last" id="nav">
+	<div class="span-18 last" id="nav">
         <ul>
             {% block tab0 %}<li><a href="{% url main-index %}"><span>Home</span></a></li>{% endblock %}
   			{% block tab1 %}<li><a href="{% url main-recent-commented %}"><span>Recent Commented</span></a></li>{% endblock %}
